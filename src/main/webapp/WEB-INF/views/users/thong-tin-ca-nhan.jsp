@@ -12,24 +12,16 @@
 
 <link href="favicon.ico" rel="shortcut icon">
 <link rel="stylesheet" href="/assets/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/animate.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/font-awesome.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/font-awesome.css" 	rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/nexus.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/responsive.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/responsive.css" 	rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/custom.css" rel="stylesheet">
-<link
-	href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"
-	rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans"
-	type="text/css" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
-	rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Roboto:400,300"
-	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300"	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans"	type="text/css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Roboto:400,300" 	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Roboto:400,300" 	rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="body-bg">
@@ -40,23 +32,15 @@
 			</a>
 		</div>
 
-
 		<div id="post_header" class="container" style="height: 40px">
 			<!-- Spacing below header -->
 		</div>
-
 		<jsp:include page="layouts/menu.jsp"></jsp:include>
 		<div id="content-top-border" class="container"></div>
-		<!-- === END HEADER === -->
-		<!-- === BEGIN CONTENT === -->
 		<div id="content">
 			<div class="container background-white">
 				<div class="row margin-vert-40">
-					<!-- Begin Sidebar Menu -->
-					<!-- End Sidebar Menu -->
-					<!--                 <div class="col-md-10"> -->
-					<!--                    <div class="row"> -->
-					<div class="col-md-11 col-md-offset-1" align="center">
+					<div class="col-md-10 col-md-offset-1" align="center">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title" style="font-size: 24px;">Thông tin
@@ -104,15 +88,12 @@
 									</tbody>
 								</table>
 							</div>
-							<!--                         </div> -->
-							<!--                     </div> -->
-
 						</div>
 
 					</div>
-					<div class="col-md-offset-5" id="chinhSuaThongTin">
-						<button type="button" class="btn btn-warning" data-toggle="modal"
-							data-target="#myModal">Chỉnh sửa</button>
+					<div class="clearfix"></div>
+					<div class="col-md-offset-5" id="chinhSuaThongTin" >
+						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Chỉnh sửa</button>
 						<div class="modal fade" id="myModal" role="dialog">
 							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
@@ -155,24 +136,24 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-11 col-md-offset-1">
+					<div class="col-md-10 col-md-offset-1">
 						<h2>Danh sách đề tài:</h2>
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th><p align="center">Mã đề tài</p></th>
-										<th><p align="center">Tên đề tài</p></th>
-										<th><p align="center">Tên tác giả</p></th>
-										<th><p align="center">Loại đề tài</p></th>
-										<th><p align="center">Hướng nghiên cứu</p></th>
-										<th><p align="center">Thời gian</p></th>
-										<th><p align="center">Trạng thái</p></th>
+										<th><p >Mã đề tài</p></th>
+										<th style="width:40%;"><p >Tên đề tài</p></th>
+										<th><p >Tên tác giả</p></th>
+										<th><p >Loại đề tài</p></th>
+										<th><p >Hướng nghiên cứu</p></th>
+										<th><p >Thời gian</p></th>
+										<th><p >Trạng thái</p></th>
 										<th></th>
 
 									</tr>
 								</thead>
-								<tbody align="center">
+								<tbody >
 
 									<c:forEach items="${nguoiDung.dsDeTai}" var="deTai">
 										<tr>
@@ -197,56 +178,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- === END CONTENT === -->
-			<!-- === BEGIN FOOTER === -->
-			<div id="content-bottom-border" class="container"></div>
-			<div id="base">
-				<div class="container padding-vert-30 margin-top-60">
-					<div class="row">
-						<!-- Contact Details -->
-						<div class="col-md-4 margin-bottom-20">
-							<h3 class="margin-bottom-10">Liên hệ với chúng tôi</h3>
-							<p>
-								<span class="fa-phone">Điện thoại:</span> (+84)948 713 xxx <br>
-								<span class="fa-envelope">Email:</span> <a
-									href="mailto:info@joomla51.com">vanthang0508@gmail.com</a> <br>
-							</p>
-							<p>
-								Viện Công nghệ thông tin và Truyền thông, <br>Đại học Bách
-								Khoa Hà Nội, <br> Số 1 Đại Cồ Việt, <br> Hai Bà Trưng,
-								<br> Hà Nội.
-							</p>
-						</div>
-
-						<!-- End Contact Details -->
-
-						<div class="col-md-1"></div>
-						<!-- Disclaimer -->
-						<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-							<h3 class="color-gray margin-bottom-10">Đăng ký nhận thông
-								báo</h3>
-							<p>
-								Nhập email của bạn <br>để nhận những thông báo mới nhất
-							</p>
-							<input type="email"> <br>
-							<button class="btn btn-primary btn-lg margin-top-20"
-								type="button">Đăng ký</button>
-						</div>
-						<!-- End Disclaimer -->
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<div id="footer">
-				<div class="container">
-					<div class="row">
-						<div id="copyright" class="col-md-4">
-							<p class="pull-right">2016 Copyright@thanglv</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<jsp:include page="layouts/footer.jsp"></jsp:include>
 		</div>
+	</div>
 		<!-- JS -->
 		<script
 			src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -266,6 +200,5 @@
 		<script type="text/javascript" src="/assets/js/slimbox2.js"
 			charset="utf-8"></script>
 		<script src="/assets/js/modernizr.custom.js" type="text/javascript"></script>
-		<script src="/assets/js/admin/app.js" type="text/javascript"></script>
 </body>
 </html>

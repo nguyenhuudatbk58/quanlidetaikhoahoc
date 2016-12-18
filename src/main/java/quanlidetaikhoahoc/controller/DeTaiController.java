@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import quanlidetaikhoahoc.domain.DeTai;
 import quanlidetaikhoahoc.domain.HuongNghienCuu;
 import quanlidetaikhoahoc.domain.LoaiDeTai;
 import quanlidetaikhoahoc.domain.NguoiDung;
+import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 import quanlidetaikhoahoc.domain.Views;
 import quanlidetaikhoahoc.domain.YeuCauDuyetDeTai;
 import quanlidetaikhoahoc.requestdata.SearchDeTaiRequestData;
@@ -60,9 +62,38 @@ public class DeTaiController {
 	public void duyetDeTai(@PathVariable("id") int id){
 		DeTai deTai = deTaiDAO.get(id);
 		deTai.setDuyet(true);
+		TrangThaiDeTai  trangThaiDeTai  = new TrangThaiDeTai();
+		trangThaiDeTai.setId(1);
+		deTai.setTrangThai(trangThaiDeTai);
 		deTaiDAO.update(deTai);
 	}
-	
+	@PostMapping(value="/quan-li/sua-de-tai/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void suaDeTai(@PathVariable("id") long id,@RequestBody DeTai deTai){
+		DeTai dt  = deTaiDAO.get(id);
+		deTai.setIdDeTai(id);
+		deTai.setMaDeTai(dt.getMaDeTai());
+		deTai.setTacGia(dt.getTacGia());
+		deTai.setDuyet(dt.isDuyet());
+		deTai.setNam(dt.getNam());
+		deTaiDAO.update(deTai);
+	}
+	@PostMapping(value="/quan-li/xoa-de-tai/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void xoaDeTai(@PathVariable("id") int id){
+		DeTai deTai = deTaiDAO.get(id);
+		deTaiDAO.delete(deTai);
+		System.out.println(deTai.getTen());
+	}
+	@GetMapping(value="/quan-li/sua-de-tai/{id}")
+	public String suaDeTai(@PathVariable("id") int id,Model model){
+		model.addAttribute("deTai", deTaiDAO.get(id));
+		model.addAttribute("dsLoaiDeTai", deTaiDAO.getLoaiDeTai());
+		model.addAttribute("dsHuongNghienCuu", deTaiDAO.getHuongNghienCuu());
+		model.addAttribute("dsDanhGia", deTaiDAO.getDanhGia());
+		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
+		return "admin/sua-de-tai";
+	}
 	@PostMapping("/tao-de-tai")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void taoDeTai(@RequestBody DeTai deTai,Principal currentUser){

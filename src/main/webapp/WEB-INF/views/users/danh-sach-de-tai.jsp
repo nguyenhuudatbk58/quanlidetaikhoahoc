@@ -67,23 +67,23 @@
 						<a href="/tim-kiem-nang-cao"><button type="button"
 								class="btn btn btn-primary">Tìm kiếm nâng cao</button></a>
 					</div>
-					<div class="col-md-11 col-md-offset-1">
+					<div class="col-md-10 col-md-offset-1">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th><p align="center">Mã đề tài</p></th>
-										<th><p align="center">Tên đề tài</p></th>
-										<th><p align="center">Tên tác giả</p></th>
-										<th><p align="center">Loại đề tài</p></th>
-										<th><p align="center">Hướng nghiên cứu</p></th>
-										<th><p align="center">Thời gian</p></th>
-										<th><p align="center">Trạng thái</p></th>
+										<th><p >Mã đề tài</p></th>
+										<th style="width:30%;"><p align="center">Tên đề tài</p></th>
+										<th><p>Tên tác giả</p></th>
+										<th><p>Loại đề tài</p></th>
+										<th><p>Hướng nghiên cứu</p></th>
+										<th style="width: 200px;"><p>Thời gian</p></th>
+										<th><p>Trạng thái</p></th>
 										<th></th>
 
 									</tr>
 								</thead>
-								<tbody align="center" id="dsDeTai" >
+								<tbody  id="dsDeTai" >
 									<tr >
 										<td>KH04</td>
 										<td>Đề tài về xử lý tiếng nói abcugdw ggqgdq ygqsd ysv
@@ -115,55 +115,7 @@
 		</div>
 
 	</div>
-	<!-- === END CONTENT === -->
-	<!-- === BEGIN FOOTER === -->
-	<div id="content-bottom-border" class="container"></div>
-	<div id="base">
-		<div class="container padding-vert-30 margin-top-60">
-			<div class="row">
-				<!-- Contact Details -->
-				<div class="col-md-4 margin-bottom-20">
-					<h3 class="margin-bottom-10">Liên hệ với chúng tôi</h3>
-					<p>
-						<span class="fa-phone">Điện thoại:</span> (+84)948 713 xxx <br>
-						<span class="fa-envelope">Email:</span> <a
-							href="mailto:info@joomla51.com">vanthang0508@gmail.com</a> <br>
-					</p>
-					<p>
-						Viện Công nghệ thông tin và Truyền thông, <br>Đại học Bách
-						Khoa Hà Nội, <br> Số 1 Đại Cồ Việt, <br> Hai Bà Trưng, <br>
-						Hà Nội.
-					</p>
-				</div>
-
-				<!-- End Contact Details -->
-
-				<div class="col-md-1"></div>
-				<!-- Disclaimer -->
-				<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-					<h3 class="color-gray margin-bottom-10">Đăng ký nhận thông báo</h3>
-					<p>
-						Nhập email của bạn <br>để nhận những thông báo mới nhất
-					</p>
-					<input type="email"> <br>
-					<button class="btn btn-primary btn-lg margin-top-20" type="button">Đăng
-						ký</button>
-				</div>
-				<!-- End Disclaimer -->
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<div id="footer">
-		<div class="container">
-			<div class="row">
-				<div id="copyright" class="col-md-4">
-					<p class="pull-right">2016 Copyright@thanglv</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- JS -->
+	<jsp:include page="layouts/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/assets/js/jquery.min.js"
 		type="text/javascript"></script>
 	<script type="text/javascript" src="/assets/js/bootstrap.min.js"

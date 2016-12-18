@@ -5,7 +5,6 @@
 $(document).ready(function(){
 	
 	$.getJSON("/huong-nghien-cuu",function(response){
-		$("#huongNghienCuu").empty();
         response.forEach(function(data){
         	var option = "<option value='"+data.ten+"'>"+data.ten+"</option>";
         	$("#huongNghienCuu").append(option);
@@ -13,7 +12,6 @@ $(document).ready(function(){
 	});
 	
 	$.getJSON("/loai-de-tai",function(response){
-		$("#loaiDeTai").empty();
         response.forEach(function(data){
         	var option = "<option value='"+data.ten+"'>"+data.ten+"</option>";
         	$("#loaiDeTai").append(option);
@@ -152,7 +150,10 @@ $(document).ready(function(){
 			           'Content-Type': 'application/json' 
 			    },
     			success: function(response){
-    				
+    				$("#message").append("Đăng kí đề tài thành công.");
+    				setTimeout(function(){
+    					$("#message").addClass("hide");
+    				},2000);
     			}
     		});
         }

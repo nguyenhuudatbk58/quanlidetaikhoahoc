@@ -18,9 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "nguoi_dung")
@@ -68,6 +66,10 @@ public class NguoiDung {
 
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "tacGia")
 	private Set<DeTai> dsDeTai = new HashSet<DeTai>();
+	
+	
+	@Column(name="active")
+	private boolean active;
 
 
 	public long getIdNguoiDung() {
@@ -152,6 +154,15 @@ public class NguoiDung {
 
 	public Set<DeTai> getDsDeTai() {
 		return dsDeTai;
+	}
+	
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public void setDsDeTai(Set<DeTai> dsDeTai) {

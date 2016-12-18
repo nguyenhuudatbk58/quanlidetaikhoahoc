@@ -9,14 +9,14 @@ $(document).ready(function(){
 		 $("#dsDeTai").empty();
 		 dsDeTai.forEach(function(deTai){
 		   var row  = "<tr>\
-			          <td>"+deTai.maDeTai+"</td>\
 					  <td>"+deTai.ten+"</td>\
 					  <td>"+deTai.tacGia.tenTacGia+"</td>\
 					  <td>"+deTai.loaiDeTai.ten+"</td>\
 					  <td>"+deTai.huongNghienCuu.ten+"</td>\
 					  <td>"+deTai.thoiGianBatDau+ " - " + deTai.thoiGianKetThuc+ "</td>\
 					  <td>"+deTai.trangThai.ten + "</td>\
-					  <td><a href=''><button type='button' class='btn btn-sm btn-info'>Xem</button></a></td>\
+					  <td><a href='/quan-li/thong-tin-de-tai/"+deTai.idDeTai+"'><button type='button' class='btn btn-sm btn-info'>Xem</button></a></td>\
+					  <td><a href='/quan-li/sua-de-tai/"+deTai.idDeTai+"'><button type='button' class='btn btn-sm btn-warning'>Sửa</button></a></td>\
                       <td><button type='button' class='btn btn-sm btn-danger'>Xóa</button></td>\
                       </tr>";
 		   $("#dsDeTai").append(row);
@@ -25,18 +25,20 @@ $(document).ready(function(){
 	 
 	 
 	 var  searchResponseHandler  = function(response){
-		 var options = {
-	 			 bootstrapMajorVersion : 3,
-	 			 currentPage : response.page,
-	 			 totalPages :  response.totalPage,
-	 			 numberOfPages: 4,
-	 			 onPageClicked : function(event, originEvent,type, page) {
-	 				 requestData.page = page;
-	 				 searchDeTai(requestData,insertDeTai);
-	 			 }
-	 	 };
-	    	 
-	    $('#pagination').bootstrapPaginator(options);
+	   if(response.totalPages > 1){
+			 var options = {
+		 			 bootstrapMajorVersion : 3,
+		 			 currentPage : response.page,
+		 			 totalPages :  response.totalPages,
+		 			 numberOfPages: 4,
+		 			 onPageClicked : function(event, originEvent,type, page) {
+		 				 requestData.page = page;
+		 				 searchDeTai(requestData,insertDeTai);
+		 			 }
+		 	 };
+		    	 
+		    $('#pagination').bootstrapPaginator(options);
+	   }	 
 	    insertDeTai(response);
 	 };
 	 

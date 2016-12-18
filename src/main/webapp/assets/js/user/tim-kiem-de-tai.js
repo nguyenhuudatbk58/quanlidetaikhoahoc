@@ -28,7 +28,7 @@
 	 
 	 
 	 var insertDeTai = function(response){
-		 var dsDeTai = response.datas;
+		 var dsDeTai = response.data;
 		 $("#dsDeTai").empty();
 		 dsDeTai.forEach(function(deTai){
 		   var row  = "<tr>\
@@ -50,7 +50,7 @@
 		 var options = {
 	 			 bootstrapMajorVersion : 3,
 	 			 currentPage : response.page,
-	 			 totalPages :  response.totalPage,
+	 			 totalPages :  response.totalPages,
 	 			 numberOfPages: 4,
 	 			 onPageClicked : function(event, originEvent,type, page) {
 	 				 requestData.page = page;

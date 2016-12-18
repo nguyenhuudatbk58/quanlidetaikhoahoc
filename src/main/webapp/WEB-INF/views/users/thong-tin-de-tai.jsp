@@ -59,7 +59,7 @@
 							<div class="container-fluid">
 
 								<div class="row">
-									<div class="col-md-12" align="center">
+									<div class="col-md-11" align="center">
 										<div class="panel panel-info">
 											<div class="panel-heading">
 												<h3 class="panel-title" style="font-size: 24px;">Thông
@@ -69,52 +69,75 @@
 												<table class="table table-striped">
 													<tbody>
 														<tr>
-															<td align="center"><strong>Mã đề tài</strong></td>
+															<td ><strong>Mã đề tài</strong></td>
 															<td>${deTai.maDeTai}</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Tên đề tài</strong></td>
+															<td ><strong>Tên đề tài</strong></td>
 															<td>${deTai.ten}</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Tên tác giả</strong></td>
+															<td ><strong>Tên tác giả</strong></td>
 															<td>${deTai.tacGia.tenTacGia}</td>
 															<td></td>
 														</tr>
 														<c:forEach var="dongTacGia" items="${deTai.tacGia.dsDongTacGia}">
 															<tr>
-																<td align="center"><strong>Đồng tác giả</strong></td>
+																<td ><strong>Đồng tác giả</strong></td>
 																<td>${dongTacGia}</td>
 															</tr>
 														</c:forEach>
 														<tr>
-															<td align="center"><strong>Loại đề tài</strong></td>
+															<td ><strong>Loại đề tài</strong></td>
 															<td>${deTai.loaiDeTai.ten}</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Hướng nghiên cứu</strong></td>
+															<td ><strong>Hướng nghiên cứu</strong></td>
 															<td>${deTai.huongNghienCuu.ten}</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Mô tả đề tài</strong></td>
+															<td ><strong>Mô tả đề tài</strong></td>
 															<td>${deTai.moTa}</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Thời gian</strong></td>
+															<td ><strong>Thời gian</strong></td>
 															<td><fmt:formatDate value="${deTai.thoiGianBatDau.time}" pattern="yyyy/MM/dd" />
 															 - <fmt:formatDate value="${deTai.thoiGianKetThuc.time}" pattern="yyyy/MM/dd" /></td>
 															<td></td>
 														</tr>
 														<tr>
-															<td align="center"><strong>Trạng thái</strong></td>
+															<td ><strong>Trạng thái</strong></td>
 															<td>${deTai.trangThai.ten}</td>
 															<td></td>
 														</tr>
+														<c:choose>
+															<c:when test="${deTai.trangThai.id == 3 }">
+																<tr>
+																	<td ><strong>Thời gian nghiệm thu</strong></td>
+																	<td><fmt:formatDate value="${deTai.thoiGianNghiemThu}" pattern="yyyy/MM/dd" /></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td ><strong>Đánh giá</strong></td>
+																	<td>${deTai.danhGia.ten}</td>
+																	<td></td>
+																</tr>
+															</c:when>
+														</c:choose>
+														<c:choose>
+															<c:when test="${deTai.trangThai.id == 5 }">
+																<tr>
+																	<td ><strong>Lý do hủy</strong></td>
+																	<td>${deTai.lyDoHuy}</td>
+																	<td></td>
+																</tr>
+															</c:when>
+														</c:choose>
 													</tbody>
 												</table>
 											</div>
@@ -132,53 +155,7 @@
 			</div>
 			<!-- === END CONTENT === -->
 			<!-- === BEGIN FOOTER === -->
-			<div id="content-bottom-border" class="container"></div>
-			<div id="base">
-				<div class="container padding-vert-30 margin-top-60">
-					<div class="row">
-						<!-- Contact Details -->
-						<div class="col-md-4 margin-bottom-20">
-							<h3 class="margin-bottom-10">Liên hệ với chúng tôi</h3>
-							<p>
-								<span class="fa-phone">Điện thoại:</span> (+84)948 713 xxx <br>
-								<span class="fa-envelope">Email:</span> <a
-									href="mailto:info@joomla51.com">vanthang0508@gmail.com</a> <br>
-							</p>
-							<p>
-								Viện Công nghệ thông tin và Truyền thông, <br>Đại học Bách
-								Khoa Hà Nội, <br> Số 1 Đại Cồ Việt, <br> Hai Bà Trưng,
-								<br> Hà Nội.
-							</p>
-						</div>
-
-						<!-- End Contact Details -->
-
-						<div class="col-md-1"></div>
-						<!-- Disclaimer -->
-						<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-							<h3 class="color-gray margin-bottom-10">Đăng ký nhận thông
-								báo</h3>
-							<p>
-								Nhập email của bạn <br>để nhận những thông báo mới nhất
-							</p>
-							<input type="email"> <br>
-							<button class="btn btn-primary btn-lg margin-top-20"
-								type="button">Đăng ký</button>
-						</div>
-						<!-- End Disclaimer -->
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<div id="footer">
-				<div class="container">
-					<div class="row">
-						<div id="copyright" class="col-md-4">
-							<p class="pull-right">2016 Copyright@thanglv</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<jsp:include page="layouts/footer.jsp"></jsp:include>
 			<script
 				src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 			<script type="text/javascript" src="/assets/js/jquery.min.js"

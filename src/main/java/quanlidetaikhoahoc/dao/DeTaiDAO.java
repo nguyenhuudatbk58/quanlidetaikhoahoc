@@ -37,6 +37,9 @@ public class DeTaiDAO extends BaseHibernateDAO{
 		getCurrentSession().save(thongBao);
 		return thongBao;
 	}
+	public void delete(DeTai deTai){
+		getCurrentSession().delete(deTai);
+	}
 	public DeTai get(long id){
 		DeTai deTai = getCurrentSession().get(DeTai.class, id);
 		return deTai;
@@ -65,7 +68,7 @@ public class DeTaiDAO extends BaseHibernateDAO{
  	public int count(String tenDeTai,int duyet){
  		String sqlString = "select count(*) from de_tai where MATCH(ten) AGAINST(:tenDeTai) and duyet = :duyet";
  		if(tenDeTai.equals("")){
-        	 sqlString = "select count(*) from de_tai where duyet = 1";
+        	 sqlString = "select count(*) from de_tai where duyet = :duyet";
  		}
  		System.out.println(sqlString);
  		NativeQuery query = getCurrentSession().createNativeQuery(sqlString);
@@ -177,7 +180,7 @@ public class DeTaiDAO extends BaseHibernateDAO{
 		int offset = (page - 1)*pageSize;
 		String sqlString = "select * from de_tai where MATCH(ten) AGAINST(:tenDeTai) and duyet = :duyet";
 		if(tenDeTai.equals("")){
-       	   sqlString =  "select * from de_tai where duyet = 1";
+       	   sqlString =  "select * from de_tai where duyet = :duyet";
 		}
 		System.out.println(sqlString);
 		NativeQuery<DeTai> query = getCurrentSession().createNativeQuery(sqlString, DeTai.class);

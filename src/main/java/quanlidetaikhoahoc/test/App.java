@@ -16,7 +16,6 @@ import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 public class App {
 
 	public static void main(String[] args) {
-	/*	
 		AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext(
 				RootConfig.class);
 		configApplicationContext.register(NguoiDungDAO.class);
@@ -25,24 +24,32 @@ public class App {
 		NguoiDungDAO nguoiDungDAO = (NguoiDungDAO) configApplicationContext.getBean("nguoiDungDAO");
 		DeTaiDAO deTaiDAO = (DeTaiDAO) configApplicationContext.getBean("deTaiDAO");
 		DeTai deTai = new DeTai();
-		deTai.setMaDeTai("KH6");
-		deTai.setTen("Tối ưu hóa mô hình kết hợp các đồ thị Markov dạng cây trong bài toán phân đoạn ảnh");
+		deTai.setMaDeTai("KH18");
+		TrangThaiDeTai trangThaiDeTai = new TrangThaiDeTai();
+		trangThaiDeTai.setId(1);
+		LoaiDeTai loaiDeTai = new LoaiDeTai();
+		loaiDeTai.setId(2);
+		HuongNghienCuu huongNghienCuu = new HuongNghienCuu();
+		huongNghienCuu.setId(1);
+		deTai.setHuongNghienCuu(huongNghienCuu);
+		deTai.setLoaiDeTai(loaiDeTai);
+		deTai.setTrangThai(trangThaiDeTai);
+		deTai.setDuyet(true);
+		deTai.setTen("Nghiên cứu phương pháp biểu diễn hiệu quả nội dung ảnh số cho bài toán gán đa nhãn");
 		deTai.setNam(2013);
 		Calendar t = Calendar.getInstance();
-		t.set(2013, 2, 3);
+		t.set(2013, 2, 10);
+		deTai.setThoiGianBatDau(t);
 		Calendar t2 = Calendar.getInstance();
-		t.set(2013, 11, 3);
+		t.set(2013, 8, 5);
 		deTai.setThoiGianKetThuc(t2);
 
 		NguoiDung nguoiDung = new NguoiDung();
-		nguoiDung.setIdNguoiDung(3);
+		nguoiDung.setIdNguoiDung(2);
 
 		deTai.setTacGia(nguoiDung);
 
 		deTaiDAO.save(deTai);
-		*/
-		Calendar calendar = Calendar.getInstance();
-		System.out.println(calendar.getTimeInMillis());
 	}
 
 }

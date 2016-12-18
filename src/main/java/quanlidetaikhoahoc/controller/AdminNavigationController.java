@@ -98,7 +98,8 @@ public class AdminNavigationController {
 	@ResponseStatus(HttpStatus.OK)
 	public void xoaTaiKhoan(@PathVariable("id") int id){
 		NguoiDung nguoiDung = nguoiDungDAO.getById(id);
-		nguoiDungDAO.delete(nguoiDung);
+		nguoiDung.setActive(false);
+		nguoiDungDAO.update(nguoiDung);
 	}
 	
 	@PostMapping(value="/tim-kiem-nguoi-dung")
@@ -119,5 +120,11 @@ public class AdminNavigationController {
 		int offset = (page - 1)*pageSize;
 		response.setDatas(nguoiDungDAO.search(pageSize, offset, dieuKienTimKiem));
 		return response;
+	}
+	
+	@GetMapping(value="/thong-tin-tai-khoan/{id}")
+	public String thongTinTaiKhoan(@PathVariable("id") long id,Model model){
+		model.addAttribute("nguoiDung", nguoiDungDAO.getById(id));
+		return "admin/thong-tin-tai-khoan";
 	}
 }

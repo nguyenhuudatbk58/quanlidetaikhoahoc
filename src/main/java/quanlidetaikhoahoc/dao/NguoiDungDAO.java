@@ -48,7 +48,7 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 		return nguoiDung;
 	}
 	
-	public NguoiDung getById(int id){
+	public NguoiDung getById(long id){
        return getCurrentSession().get(NguoiDung.class, id);
 	}
 	
@@ -57,14 +57,20 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 		CriteriaBuilder criteriaBuilder = getCurrentSession().getCriteriaBuilder();
 		CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
 		Root<NguoiDung> nd = criteriaQuery.from(NguoiDung.class);
-		
+		Predicate predicate = null;
 		criteriaQuery.select(criteriaBuilder.count(nd));
 		if(!dieuKienTimKiem.equals("")){
 			Predicate maTacGiaPredicate = criteriaBuilder.equal(nd.get("maTacGia"), dieuKienTimKiem);
-			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String>get("tenTacGia"), dieuKienTimKiem);
-			Predicate predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
-			criteriaQuery.where(predicate);
+			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String>get("tenTacGia"), dieuKienTimKiem+"%");
+			predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
+			
+			Predicate activePredicate = criteriaBuilder.equal(nd.get("active"), true);
+			predicate = criteriaBuilder.and(activePredicate,predicate);
+		}else{
+			Predicate activePredicate = criteriaBuilder.equal(nd.get("active"), true);
+			predicate = activePredicate;
 		}
+		criteriaQuery.where(predicate);
 		
 		Query query = getCurrentSession().createQuery(criteriaQuery);
 		Long count = (Long)query.getSingleResult();
@@ -77,12 +83,21 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 		CriteriaQuery<NguoiDung> criteriaQuery = criteriaBuilder.createQuery(NguoiDung.class);
 		Root<NguoiDung> nd = criteriaQuery.from(NguoiDung.class);
 		criteriaQuery.select(nd);
+		Predicate predicate = null;
 		if(!dieuKienTimKiem.equals("")){
 			Predicate maTacGiaPredicate = criteriaBuilder.equal(nd.get("maTacGia"), dieuKienTimKiem);
 			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String>get("tenTacGia"), dieuKienTimKiem);
-			Predicate predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
-			criteriaQuery.where(predicate);
+			predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
+			
+			Predicate activePredicate = criteriaBuilder.equal(nd.get("active"), true);
+			predicate = criteriaBuilder.and(activePredicate,predicate);
+			
+		}else{
+			Predicate activePredicate = criteriaBuilder.equal(nd.get("active"), true);
+			predicate = activePredicate;
 		}
+		criteriaQuery.where(predicate);
+		
 		Query query = getCurrentSession().createQuery(criteriaQuery);
 	    query.setFirstResult(offset);
 	    query.setMaxResults(pageSize);

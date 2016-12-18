@@ -54,51 +54,56 @@
 			<div class="container background-white">
 				<div class="row margin-vert-40">
 					<!-- End Sidebar Menu -->
-					<div class="col-md-11 col-md-offset-1">
+					<div class="col-md-10 col-md-offset-1">
 						<!-- Nội dung chi tiết -->
-						<div class="headline">
-							<h2>Đăng ký đề tài</h2>
+						<div class="headline" ">
+							<h2 align="center">Đăng ký đề tài</h2>
+						</div>
+						<div class="alert alert-success alert-dismissible hide" id="message">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 						<form id="formTaoDeTai">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Tên đề tài</label> <input class="form-control"
-										placeholder="Tên đề tài" id="tenDeTai" name="tenDeTai">
+									<label>Tên đề tài</label>
+									<textarea class="form-control" rows="5" id="tenDeTai" name="tenDeTai"></textarea>
 								</div>
 
-
-								<div class="form-group">
-									<label>Thời gian bắt đầu</label> <input class="form-control" type="date" id="thoiGianBatDau"
-							name="thoiGianBatDau"			placeholder="Bắt đầu">
+                                <div class="form-group">
+									<label>Thời gian bắt đầu</label> 
+									<input class="form-control" type="date" id="thoiGianBatDau"	name="thoiGianBatDau" placeholder="Bắt đầu">
 								</div>
-								<div class="form-group">
-									<label>Thời gian hoàn thành</label> <input class="form-control" type="date" id="thoiGianHoanThanh"
-							name="thoiGianHoanThanh"			placeholder="Hoàn thành">
+                                 <div class="form-group">
+									<label>Thời gian hoàn thành</label> 
+									<input class="form-control" type="date" id="thoiGianHoanThanh" 	name="thoiGianHoanThanh" placeholder="Hoàn thành">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Loại đề tài</label> 
 									<select class="form-control" id="loaiDeTai" name="loaiDeTai">
-									     <option>Cấp trường</option>
+									     <option value="0" selected="selected">---Chọn loại đề tài---</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<label>Hướng nghiên cứu</label>
 									 <select class="form-control" name="huongNghienCuu" id="huongNghienCuu">
+									   <option value="0" selected="selected">---Chọn hướng nghiên cứu---</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<label>Mô tả đề tài</label>
-									<textarea class="form-control" rows="3" id="moTa" name="moTa"></textarea>
+									<textarea class="form-control" rows="5" id="moTa" name="moTa"></textarea>
 								</div>
 
-								<div class="col-md-3">
-									<button type="button" class="btn btn-aqua" id="resetForm">Thiết lập	lại</button>
+							</div>
+							<div class="col-md-offset-4">
+							    <div class="col-md-2">
+						  			<button type="button" class="btn btn-aqua" id="resetForm">Thiết lập	lại</button>
 								</div>
-								<div class="col-md-3">
+						       	<div class="col-md-2">
 									<button type="submit" class="btn btn-success" id="taoDeTai">Gửi đăng	ký</button>
-								</div>
+						     	</div>
 							</div>
 						</form>
 
@@ -109,53 +114,7 @@
 		</div>
 		<!-- === END CONTENT === -->
 		<!-- === BEGIN FOOTER === -->
-		<div id="content-bottom-border" class="container"></div>
-		<div id="base">
-			<div class="container padding-vert-30 margin-top-60">
-				<div class="row">
-					<!-- Contact Details -->
-					<div class="col-md-4 margin-bottom-20">
-						<h3 class="margin-bottom-10">Liên hệ với chúng tôi</h3>
-						<p>
-							<span class="fa-phone">Điện thoại:</span> (+84)948 713 xxx <br>
-							<span class="fa-envelope">Email:</span> <a
-								href="mailto:info@joomla51.com">vanthang0508@gmail.com</a> <br>
-						</p>
-						<p>
-							Viện Công nghệ thông tin và Truyền thông, <br>Đại học Bách
-							Khoa Hà Nội, <br> Số 1 Đại Cồ Việt, <br> Hai Bà Trưng,
-							<br> Hà Nội.
-						</p>
-					</div>
-
-					<!-- End Contact Details -->
-
-					<div class="col-md-1"></div>
-					<!-- Disclaimer -->
-					<div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-						<h3 class="color-gray margin-bottom-10">Đăng ký nhận thông
-							báo</h3>
-						<p>
-							Nhập email của bạn <br>để nhận những thông báo mới nhất
-						</p>
-						<input type="email"> <br>
-						<button class="btn btn-primary btn-lg margin-top-20" type="button">Đăng
-							ký</button>
-					</div>
-					<!-- End Disclaimer -->
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div id="copyright" class="col-md-4">
-						<p class="pull-right">2016 Copyright@thanglv</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		<jsp:include page="layouts/footer.jsp"></jsp:include>
 	</div>
 	<!-- JS -->
 	<script
