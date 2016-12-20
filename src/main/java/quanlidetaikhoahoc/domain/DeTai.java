@@ -2,6 +2,7 @@ package quanlidetaikhoahoc.domain;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,11 +25,10 @@ public class DeTai {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_de_tai")
-	@JsonView(value=Views.ReviewDeTai.class)
+	@JsonView(value={Views.ReviewDeTai.class,Views.ThongBao.class})
 	private long idDeTai;
 
 	@Column(name = "ma_de_tai")
-	@JsonView(value=Views.ReviewDeTai.class)
 	private String maDeTai;
 
 	@Column(name = "ten")
@@ -79,10 +80,14 @@ public class DeTai {
 	private DanhGia danhGia;
 
 	@Column(name = "nam")
+	@JsonView(value=Views.ReviewDeTai.class)
 	private int nam;
 	
 	@Column(name="duyet")
 	private boolean duyet;
+	
+	@OneToOne(cascade = CascadeType.REMOVE,mappedBy="deTai",fetch = FetchType.LAZY)
+	private YeuCauDuyetDeTai yeuCauDuyetDeTai;
 
 	public long getIdDeTai() {
 		return idDeTai;
@@ -210,6 +215,14 @@ public class DeTai {
 
 	public void setDuyet(boolean duyet) {
 		this.duyet = duyet;
+	}
+
+	public YeuCauDuyetDeTai getYeuCauDuyetDeTai() {
+		return yeuCauDuyetDeTai;
+	}
+
+	public void setYeuCauDuyetDeTai(YeuCauDuyetDeTai yeuCauDuyetDeTai) {
+		this.yeuCauDuyetDeTai = yeuCauDuyetDeTai;
 	}
 	
 	

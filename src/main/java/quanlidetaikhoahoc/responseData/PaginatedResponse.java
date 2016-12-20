@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import quanlidetaikhoahoc.domain.Views;
 
-public class SearchResponse<T> {
+public class PaginatedResponse<T> {
 
 	@JsonView(value={Views.ReviewDeTai.class,Views.ReviewUser.class})
 	private int totalPages;

@@ -27,7 +27,7 @@ public class NguoiDung {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_nguoi_dung")
-	@JsonView(value={Views.ReviewUser.class})
+	@JsonView(value={Views.ReviewUser.class,Views.ThongBao.class})
 	private long idNguoiDung;
 
 	@Column(name = "ma_tac_gia")

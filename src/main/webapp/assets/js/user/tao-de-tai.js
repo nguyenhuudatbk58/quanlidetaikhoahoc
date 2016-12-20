@@ -6,14 +6,14 @@ $(document).ready(function(){
 	
 	$.getJSON("/huong-nghien-cuu",function(response){
         response.forEach(function(data){
-        	var option = "<option value='"+data.ten+"'>"+data.ten+"</option>";
+        	var option = "<option value='"+data.id+"'>"+data.ten+"</option>";
         	$("#huongNghienCuu").append(option);
         });
 	});
 	
 	$.getJSON("/loai-de-tai",function(response){
         response.forEach(function(data){
-        	var option = "<option value='"+data.ten+"'>"+data.ten+"</option>";
+        	var option = "<option value='"+data.id+"'>"+data.ten+"</option>";
         	$("#loaiDeTai").append(option);
         });
 	});
@@ -51,18 +51,18 @@ $(document).ready(function(){
 		var that_month = $that.getMonth();
 		var this_date = $this.getDate();
 		var that_date = $that.getDate();
-		if(this_year < this_month){
-			return false;
+		if(this_year > this_month){
+			return true;
 		}
-		if(this_month < that_month){
-			return false;
+		if(this_month > that_month){
+			return true;
 		}
-		if(this_date <= that_date){
-			return false;
+		if(this_date >= that_date){
+			return true;
 		}
 		
 		
-		return true;
+		return false;
 	};
 	$.validator.methods.before = function(value,element,param){
 		if($(param).val().trim() === ""){
@@ -76,17 +76,17 @@ $(document).ready(function(){
 		var that_month = $that.getMonth();
 		var this_date = $this.getDate();
 		var that_date = $that.getDate();
-		if(this_year > that_year){
-			return false;
+		if(this_year < that_year){
+			return true;
 		}
-		if(this_month > that_month){
-			return false;
+		if(this_month < that_month){
+			return true;
 		}
-		if(this_date >= that_date){
-			return false;
+		if(this_date <= that_date){
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 	
 	$("#formTaoDeTai").validate({
@@ -99,11 +99,9 @@ $(document).ready(function(){
 	    		required: true
 	    	},
 	        thoiGianBatDau: {
-	        	future: true,
 	        	before: "#thoiGianHoanThanh"
 	        },
 	        thoiGianHoanThanh:{
-	        	future: true,
 	        	after: "#thoiGianBatDau"
 	        },
 	    },
@@ -112,11 +110,9 @@ $(document).ready(function(){
 	    		required: "Nhập tên đề tài"
 	    	},
 	    	thoiGianBatDau:{
-	    		future: "Thời gian bắt đầu không hợp lệ.",
 	    		before: "Thời gian bắt đầu phải trước thời gian hoàn thành."
 	    	},
 	    	thoiGianHoanThanh:{
-	    		future: "Thời gian kết thúc không hợp lệ.",
 	    		after: "Thời gian hoàn thành phải sau thời gian bắt đầu."
 	    	},
 	    },
@@ -136,8 +132,14 @@ $(document).ready(function(){
     				ten: $("#tenDeTai").val(),
     				thoiGianBatDau: $("#thoiGianBatDau").val(),
     				thoiGianKetThuc: $("#thoiGianHoanThanh").val(),
-    				loaiDeTai: $("#loaiDeTai").val(),
-    				huongNghienCuu: $("#huongNghienCuu").val(),
+    				loaiDeTai: {
+    					id: $("#loaiDeTai").val(),
+    					ten: $("#loaiDeTai option:selected").text()
+    				},
+    				huongNghienCuu:{
+    					id: $("#huongNghienCuu").val(),
+    					ten: $("#huongNghienCuu option:selected").text()
+    				},
     				moTa: $("moTa").val(),
     		};
     		console.log(data);
@@ -151,8 +153,9 @@ $(document).ready(function(){
 			    },
     			success: function(response){
     				$("#message").append("Đăng kí đề tài thành công.");
+    				$("#message").removeClass("hidden");
     				setTimeout(function(){
-    					$("#message").addClass("hide");
+    					$("#message").addClass("hidden");
     				},2000);
     			}
     		});

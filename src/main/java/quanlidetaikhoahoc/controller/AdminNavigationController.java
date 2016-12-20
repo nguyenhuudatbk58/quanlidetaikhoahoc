@@ -26,7 +26,7 @@ import quanlidetaikhoahoc.domain.NguoiDung;
 import quanlidetaikhoahoc.domain.Role;
 import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 import quanlidetaikhoahoc.domain.Views;
-import quanlidetaikhoahoc.responseData.SearchResponse;
+import quanlidetaikhoahoc.responseData.PaginatedResponse;
 
 @Controller
 @RequestMapping(value="/quan-li")
@@ -54,7 +54,10 @@ public class AdminNavigationController {
 	}
 	
 	@GetMapping(value="/danh-sach-de-tai")
-	public String dsDeTai(){
+	public String dsDeTai(Model model){
+		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
+		model.addAttribute("dsNam", deTaiDAO.getDanhSachNam());
+		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
 		return "admin/danh-sach-de-tai";
 	}
 	
@@ -104,8 +107,8 @@ public class AdminNavigationController {
 	
 	@PostMapping(value="/tim-kiem-nguoi-dung")
 	@JsonView(Views.ReviewUser.class)
-	public @ResponseBody SearchResponse<NguoiDung> timKiemTaiKhoan(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize,@RequestParam("dieuKienTimKiem") String dieuKienTimKiem){
-		SearchResponse<NguoiDung> response = new SearchResponse<NguoiDung>();
+	public @ResponseBody PaginatedResponse<NguoiDung> timKiemTaiKhoan(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize,@RequestParam("dieuKienTimKiem") String dieuKienTimKiem){
+		PaginatedResponse<NguoiDung> response = new PaginatedResponse<NguoiDung>();
 		response.setPage(page);
 		response.setPageSize(pageSize);
 		int total = nguoiDungDAO.count(dieuKienTimKiem);

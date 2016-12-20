@@ -37,7 +37,10 @@ public class UserNavigationController {
 	}
 	
 	@GetMapping(value="/danh-sach-de-tai")
-	public String xemDSDeTai(){
+	public String xemDSDeTai(Model model){
+		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
+		model.addAttribute("dsNam", deTaiDAO.getDanhSachNam());
+		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
 		return "/users/danh-sach-de-tai";
 	}
 	

@@ -4,7 +4,9 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ page isELIgnored="false"%>
 
-
+  <div id="displayNotification" style="position:fixed; bottom:10px; right: 20px; width: 300px; z-index: 1043">
+         
+  </div>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -19,18 +21,9 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu alert-dropdown" id="notification">
-                  <li>
-                    <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">View All</a>
-                  </li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="nThongBao" class="badge" style="color:red;margin-right:10px;font-size:17px;"></span><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                <ul class="dropdown-menu alert-dropdown" id="notification-container">
+                   <li id="xemThem"><a href="" class="xemThem">Xem thêm</a></li>
                 </ul>
               </li>
               <li>
@@ -65,3 +58,7 @@
             </div>
             <!-- /.navbar-collapse -->
           </nav>
+    <script src="/assets/js/jquery.min.js" type="text/javascript"></script>          
+    <script src="/assets/js/sockjs-0.3.4.min.js" type="text/javascript"></script>
+	<script src="/assets/js/stomp.js" type="text/javascript"></script>
+	<script src="/assets/js/admin/thong-bao-duyet-de-tai.js" type="text/javascript"></script>      

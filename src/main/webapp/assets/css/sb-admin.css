@@ -107,10 +107,41 @@ li.message-footer {
 }
 
 ul.alert-dropdown {
-    width: 200px;
+    width: 400px;
 }
-
-/* Side Navigation */
+#notification-container {
+	font-size: 13px;
+	padding-top: 5px;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+#notification-container > li{
+	border-bottom: 1px solid #e2dfdf;
+}
+ .tenNguoiDung{
+	font-size:15px;
+}
+ .tenDeTai{
+	color: #867c74;
+}
+ .thoiGian{
+	font-size:10px;
+	margin-top:5px;
+	color:green; 
+}
+.notification {
+	background-color: #ddd;
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+}
+.notification a{
+	text-decoration: none;
+}
+#notification-container .xemThem{
+	text-align:center;
+	background-color:#dfe8df;
+} /* Side Navigation */
 
 @media(min-width:768px) {
     .side-nav {
@@ -235,4 +266,6 @@ ul.alert-dropdown {
 .has-error {
 	border: 1px solid red;
 }
-
+.chosen-single{
+	height: 35px !important;
+}

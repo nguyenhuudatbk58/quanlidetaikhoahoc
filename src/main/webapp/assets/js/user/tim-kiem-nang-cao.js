@@ -10,12 +10,6 @@ $(document).ready(function(){
         });
 	});
 	
-	$.getJSON("/danh-gia",function(response){
-        response.forEach(function(data){
-        	var option = "<option value='"+data.ten+"'>"+data.ten+"</option>";
-        	$("#danhGia").append(option);
-        });
-	});
 	
 	$.getJSON("/loai-de-tai",function(response){
         response.forEach(function(data){

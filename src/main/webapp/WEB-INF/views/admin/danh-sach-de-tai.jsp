@@ -13,6 +13,7 @@
 <link href="/assets/css/sb-admin.css" rel="stylesheet">
 <link href="/assets/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/assets/css/chosen.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrapper">
@@ -29,38 +30,78 @@
 					</div>
 				</div>
 
-				<div class="col-lg-12">
-					<div class="col-lg-6">
-						<div class="col-lg-1" align="left"
-							style="float: center; font-size: 16px">
-							<p>
-								<strong>Năm </strong>
-							</p>
+				<div class="col-md-12 ">
+						<div>
+							<div class="col-md-6" style="padding-left:0px;">
+								<div class="form-group input-group">
+									<input type="text" class="form-control" id="tenDeTai" placeholder="Nhập tên đề tài">
+									 <span 	class="input-group-btn">
+										<button class="btn btn-default form-control" type="button" id="searchBtn">
+											<i class="fa fa-search"></i>
+											<span>Tìm kiếm</span>
+										</button>
+									</span>
+								</div>
+							</div>
+							<button type="button" class="btn btn btn-primary" data-toggle="collapse" data-target="#advancedSearch">Tìm kiếm nâng cao</button>
+							<div class="clearfix"></div>
 						</div>
-						<div class="col-lg-4">
-							<select class="form-control">
-								<option>2012</option>
-								<option>2013</option>
-								<option>2014</option>
-								<option>2015</option>
-								<option>2016</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-lg-6" style="float: right">
-						<div class="col-lg-8">
-							<div class="form-group input-group">
-								<input type="text" class="form-control" id="tenDeTai"> <span
-									class="input-group-btn"><button
-										class="btn btn-default form-control" id="searchBtn" type="button">
-										<i class="fa fa-search"></i>
-									</button></span>
+						<div id="advancedSearch" class="collapse" style="margin-bottom:20px;">
+							<div class="col-lg-2 col-md-2" style="padding-left:0px;">
+								<div class="form-group">
+									<label>Năm</label> 
+									<select class="form-control advancedSearchCriteria" id="nam">
+										<option value="0">Tất cả</option>
+										<c:forEach var="nam" items="${dsNam}">
+										     <option value="${nam}">${nam}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+                        	<div class="col-lg-2 col-md-2">
+								<div class="form-group">
+									<label>Tên tác giả </label> 
+									<select data-placeholder="Chọn tên tác giả..." class="chosen-select form-control advancedSearchCriteria" tabindex="2" id="tenTacGia" >
+									    <option value="0">Tất cả</option>
+										<c:forEach var="nguoiDung" items="${dsNguoiDung}">
+										     <option value="${nguoiDung.idNguoiDung}">${nguoiDung.tenTacGia}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-2 col-lg-2">
+								<div class="form-group">
+									<label>Hướng nghiên cứu </label> <select class="form-control advancedSearchCriteria"
+										id="huongNghienCuu">
+										<option value="0">Tất cả</option>
+
+									</select>
+								</div>
+							</div>
+                           	<div class="col-lg-2 col-md-2">
+								<div class="form-group">
+									<label>Loại đề tài </label> <select class="form-control advancedSearchCriteria"
+										id="loaiDeTai">
+										<option value="0">Tất cả</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2 col-lg-2">
+								<div class="form-group">
+									<label>Trạng thái</label> 
+									<select class="form-control advancedSearchCriteria" id="trangThai" >
+									    <option value="0">Tất cả</option>
+										<c:forEach var="trangThai" items="${dsTrangThai}">
+										     <option value="${trangThai.id}">${trangThai.ten}</option>
+										</c:forEach>
+									</select>
+								</div>
 							</div>
 						</div>
-						<a href="/quan-li/tim-kiem-nang-cao"><button type="button"
-								class="btn btn btn-primary">Tìm kiếm nâng cao</button></a>
+
 					</div>
-				</div>
 
 				<div class="col-lg-12">
 
@@ -97,9 +138,8 @@
 		</div>
 	</div>
 	<script src="/assets/js/jquery.js"></script>
+	<script type="text/javascript" src="/assets/js/chosen.jquery.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/assets/js/bootstrap-paginator.js"
-		charset="utf-8"></script>
-	<script src="/assets/js/admin/danh-sach-de-tai.js"
-		type="text/javascript"></script>
+	<script type="text/javascript" src="/assets/js/bootstrap-paginator.js"	charset="utf-8"></script>
+	<script src="/assets/js/admin/danh-sach-de-tai.js" 	type="text/javascript"></script>
 </body>

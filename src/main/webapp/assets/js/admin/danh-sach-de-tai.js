@@ -4,6 +4,26 @@
 
 $(document).ready(function(){
 	
+	$.getJSON("/huong-nghien-cuu",function(response){
+        response.forEach(function(data){
+        	var option = "<option value='"+data.id+"'>"+data.ten+"</option>";
+        	$("#huongNghienCuu").append(option);
+        });
+	});
+	
+	
+	$.getJSON("/loai-de-tai",function(response){
+        response.forEach(function(data){
+        	var option = "<option value='"+data.id+"'>"+data.ten+"</option>";
+        	$("#loaiDeTai").append(option);
+        });
+	});
+	 $(".chosen-select").chosen();
+	 $("#tenTacGia").change(function(e){
+	      var val = $("#tenTacGia").val();	
+	      console.log(val);
+	 });
+	 
 	 var insertDeTai = function(response){
 		 var dsDeTai = response.data;
 		 $("#dsDeTai").empty();
@@ -25,6 +45,7 @@ $(document).ready(function(){
 	 
 	 
 	 var  searchResponseHandler  = function(response){
+	   $("#pagination").empty();
 	   if(response.totalPages > 1){
 			 var options = {
 		 			 bootstrapMajorVersion : 3,
@@ -64,39 +85,69 @@ $(document).ready(function(){
 			 tenDeTai: "",
 			 huongNghienCuu: null,
 			 loaiDeTai: null,
-			 danhGia: null,
-			 thoiGianNghiemThu: "",
-			 tenTacGia: "",
+			 trangThai: null,
+			 idNguoiDung: "",
 			 nam: 0,
 			 typeSearch: "NORMAL"
 	 };
 	 searchDeTai(requestData,searchResponseHandler);
 	 
 	 $("#searchBtn").click(function(e){
+		requestData.page = 1;
 		requestData.tenDeTai = $("#tenDeTai").val().trim();
 		requestData.typeSearch = "NORMAL";
 		searchDeTai(requestData,searchResponseHandler); 
 	 });
 	 
-	 $("#advancedSearchBtn").click(function(){
+	 $("#tenDeTai").keypress(function(e) {
+		    if(e.which == 13) {
+		    	requestData.page = 1;
+		    	requestData.tenDeTai = $("#tenDeTai").val().trim();
+				requestData.typeSearch = "NORMAL";
+				searchDeTai(requestData,searchResponseHandler); 
+		    }
+     });
+	 
+	 
+	 var getSearchCriteria = function(){
 		 
 		 requestData.nam = $("#nam").val();
-		 requestData.tenTacGia = $("#tenTacGia").val().trim();
-		 requestData.thoiGianNghiemThu = $("#thoiGianNghiemThu").val();
-		 requestData.huongNghienCuu = {
-			id: $("#huongNghienCuu").val(),
-			ten: $("#huongNghienCuu option:selected").text()
-		 };
-		 requestData.loaiDeTai = {
-		    id: $("#loaiDeTai").val(),
-		    ten: $("#loaiDeTai option:selected").text()
-		 };
-		 requestData.danhGia = {
-			id: $("#danhGia").val(),
-			ten: $("#danhGia option:selected").text()
-		 };
+		 requestData.idNguoiDung = $("#tenTacGia").val().trim();
+		 
+		 if($("#huongNghienCuu").val() > 0){
+			 requestData.huongNghienCuu = {
+			     id: $("#huongNghienCuu").val(),
+				 ten: $("#huongNghienCuu option:selected").text()
+			 };
+		 }else{
+			 requestData.huongNghienCuu = null;
+		 }
+		 
+		 if( $("#loaiDeTai").val() > 0){
+			 requestData.loaiDeTai = {
+				 id: $("#loaiDeTai").val(),
+				 ten: $("#loaiDeTai option:selected").text()
+			 };
+		 }else{
+			 requestData.loaiDeTai = null;
+		 }
+		 
+		 if( $("#trangThai").val() > 0 ){
+			 requestData.trangThai = {
+			     id: $("#trangThai").val(),
+				 ten: $("#trangThai option:selected").text()
+             }; 
+		 }else{
+			 requestData.trangThai = null;
+		 }
+	 };
+	 
+	 $(".advancedSearchCriteria").change(function(){
+		 getSearchCriteria();
+		 requestData.page = 1;
 		 requestData.typeSearch = "ADVANCED";
 		 searchDeTai(requestData,searchResponseHandler); 
+		 console.log(requestData);
 	 });
 	
 });

@@ -19,7 +19,7 @@ import quanlidetaikhoahoc.ApplicationProperty;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages={"quanlidetaikhoahoc.config.security"})
+@ComponentScan(basePackages={"quanlidetaikhoahoc.config.security","quanlidetaikhoahoc.config.websocket"})
 public class RootConfig {
 	
 	

@@ -1,19 +1,16 @@
 package quanlidetaikhoahoc.requestdata;
 
-import java.util.Calendar;
-
-import quanlidetaikhoahoc.domain.DanhGia;
 import quanlidetaikhoahoc.domain.HuongNghienCuu;
 import quanlidetaikhoahoc.domain.LoaiDeTai;
+import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 
 public class SearchDeTaiRequestData {
 
 	private int nam;
-	private String tenTacGia;
+	private long idNguoiDung;
 	private HuongNghienCuu huongNghienCuu;
 	private LoaiDeTai loaiDeTai;
-	private DanhGia danhGia;
-	private Calendar thoiGianNghiemThu;
+	private TrangThaiDeTai trangThai;
 	private int page;
 	private int pageSize;
 	private String tenDeTai;
@@ -25,11 +22,11 @@ public class SearchDeTaiRequestData {
 	public void setNam(int nam) {
 		this.nam = nam;
 	}
-	public String getTenTacGia() {
-		return tenTacGia;
+	public long getIdNguoiDung() {
+		return idNguoiDung;
 	}
-	public void setTenTacGia(String maTacGia) {
-		this.tenTacGia = maTacGia;
+	public void setIdNguoiDung(long idNguoiDung) {
+		this.idNguoiDung = idNguoiDung;
 	}
 	public HuongNghienCuu getHuongNghienCuu() {
 		return huongNghienCuu;
@@ -43,17 +40,13 @@ public class SearchDeTaiRequestData {
 	public void setLoaiDeTai(LoaiDeTai loaiDeTai) {
 		this.loaiDeTai = loaiDeTai;
 	}
-	public DanhGia getDanhGia() {
-		return danhGia;
+	
+	
+	public TrangThaiDeTai getTrangThai() {
+		return trangThai;
 	}
-	public void setDanhGia(DanhGia danhGia) {
-		this.danhGia = danhGia;
-	}
-	public Calendar getThoiGianNghiemThu() {
-		return thoiGianNghiemThu;
-	}
-	public void setThoiGianNghiemThu(Calendar thoiGianNghiemThu) {
-		this.thoiGianNghiemThu = thoiGianNghiemThu;
+	public void setTrangThai(TrangThaiDeTai trangThai) {
+		this.trangThai = trangThai;
 	}
 	public int getPage() {
 		return page;

@@ -14,60 +14,61 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @Entity
-@Table(name="yeu_cau_dang_ki_de_tai")
+@Table(name = "yeu_cau_duyet_de_tai")
+@JsonSerialize(using=YeuCauSerializer.class)
 public class YeuCauDuyetDeTai {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-     
+
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="nguoi_dung_id")
+	@JoinColumn(name = "nguoi_dung_id")
 	private NguoiDung nguoiDung;
-	
+
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="de_tai_id")
+	@JoinColumn(name = "de_tai_id")
 	private DeTai deTai;
-	
-	@Column(name="noi_dung")
-	private String noiDung;
-	
-	@Column(name="thoi_gian_tao")
+
+
+	@Column(name = "thoi_gian_tao")
 	@Temporal(TemporalType.DATE)
 	private Date thoiGianTao;
-	
+
 	public NguoiDung getNguoiDung() {
 		return nguoiDung;
 	}
+
 	public void setNguoiDung(NguoiDung nguoiDung) {
 		this.nguoiDung = nguoiDung;
 	}
+
 	public DeTai getDeTai() {
 		return deTai;
 	}
+
 	public void setDeTai(DeTai deTai) {
 		this.deTai = deTai;
 	}
-	public String getNoiDung() {
-		return noiDung;
-	}
-	public void setNoiDung(String noiDung) {
-		this.noiDung = noiDung;
-	}
+
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Date getThoiGianTao() {
 		return thoiGianTao;
 	}
+
 	public void setThoiGianTao(Date thoiGianTao) {
 		this.thoiGianTao = thoiGianTao;
 	}
-	
-	
-	
+
 }
