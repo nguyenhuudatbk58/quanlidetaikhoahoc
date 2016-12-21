@@ -50,7 +50,7 @@ public class ThongBaoController {
 		return "/users/danh-sach-thong-bao";
 	}
 
-	@PostMapping(value = "/quan-li/danh-sach-thong-bao")
+	@PostMapping(value = "/danh-sach-thong-bao")
 	public @ResponseBody PaginatedResponse<ThongBao> getDSThongBao(@RequestParam("page") int page,
 			@RequestParam("pageSize") int pageSize) {
 		PaginatedResponse<ThongBao> response = new PaginatedResponse<ThongBao>();

@@ -44,7 +44,7 @@ $(document).ready(function(){
 		 
 		 $.ajax({
 			method: "POST",
-			url: "/quan-li/danh-sach-thong-bao",
+			url: "/danh-sach-thong-bao",
 			data: requestData,
 			dataType:"json",
 			success: function(response){
