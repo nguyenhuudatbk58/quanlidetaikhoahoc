@@ -115,6 +115,7 @@
 									<th ><p >Hướng nghiên cứu</p></th>
 									<th style="width:50px;"><p >Thời gian</p></th>
 									<th><p >Trạng thái</p></th>
+									<th><p >Năm</p></th>
 									<th colspan="3"><p >Tùy chọn</p></th>
 
 								</tr>

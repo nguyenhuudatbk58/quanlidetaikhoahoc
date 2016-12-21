@@ -35,6 +35,7 @@ $(document).ready(function(){
 					  <td>"+deTai.huongNghienCuu.ten+"</td>\
 					  <td>"+deTai.thoiGianBatDau+ " - " + deTai.thoiGianKetThuc+ "</td>\
 					  <td>"+deTai.trangThai.ten + "</td>\
+					  <td>"+deTai.nam + "</td>\
 					  <td><a href='/quan-li/thong-tin-de-tai/"+deTai.idDeTai+"'><button type='button' class='btn btn-sm btn-info'>Xem</button></a></td>\
 					  <td><a href='/quan-li/sua-de-tai/"+deTai.idDeTai+"'><button type='button' class='btn btn-sm btn-warning'>Sửa</button></a></td>\
                       <td><button type='button' class='btn btn-sm btn-danger'>Xóa</button></td>\
