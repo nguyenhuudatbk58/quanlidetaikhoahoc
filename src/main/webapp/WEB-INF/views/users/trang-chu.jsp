@@ -130,8 +130,6 @@
             <jsp:include page="layouts/footer.jsp"></jsp:include>
          </div>
             <!-- JS -->
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-            <script type="text/javascript" src="/assets/js/jquery.min.js" type="text/javascript"></script>
             <script type="text/javascript" src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
             <script type="text/javascript" src="/assets/js/scripts.js"></script>
             <script type="text/javascript" src="/assets/js/jquery.isotope.js" type="text/javascript"></script>
@@ -140,6 +138,5 @@
             <script type="text/javascript" src="/assets/js/jquery.sticky.js" charset="utf-8"></script>
             <script type="text/javascript" src="/assets/js/slimbox2.js" charset="utf-8"></script>
             <script src="/assets/js/modernizr.custom.js" type="text/javascript"></script>
-            <script src="/assets/js/admin/app.js" type="text/javascript"></script>
     </body>
 </html>

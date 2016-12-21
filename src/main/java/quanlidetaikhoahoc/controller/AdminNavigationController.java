@@ -43,6 +43,11 @@ public class AdminNavigationController {
 		return "admin/tim-kiem-nang-cao";
 	}
 	
+	@GetMapping(value="/tao-thong-bao")
+	public String taoThongBao(){
+		return "admin/quan-li-thong-bao";
+	}
+	
 	@GetMapping(value="/quan-li-tai-khoan")
 	public String quanLiTaiKhoan(){
 		return "admin/quan-li-tai-khoan";

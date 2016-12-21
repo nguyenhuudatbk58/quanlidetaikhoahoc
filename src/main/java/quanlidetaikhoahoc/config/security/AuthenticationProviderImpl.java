@@ -32,7 +32,9 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 
 				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 				authorities.add(new SimpleGrantedAuthority("ROLE_"+nguoiDung.getRole().getValue()));
-				return new UsernamePasswordAuthenticationToken(authentication.getName(), matKhau, authorities);
+				nguoiDung.setMatKhau(null);
+				nguoiDung.setToken(null);
+				return new UsernamePasswordAuthenticationToken(nguoiDung, matKhau, authorities);
 			} else {
 				throw new BadCredentialsException("Sai thông tin tài khoản");
 			}

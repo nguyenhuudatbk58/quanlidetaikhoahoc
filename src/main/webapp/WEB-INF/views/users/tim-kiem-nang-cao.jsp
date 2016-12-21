@@ -147,7 +147,6 @@
   </div>
   <jsp:include page="layouts/footer.jsp"></jsp:include>
 </div>
-<script type="text/javascript" src="/assets/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/assets/js/scripts.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.isotope.js" type="text/javascript"></script>
