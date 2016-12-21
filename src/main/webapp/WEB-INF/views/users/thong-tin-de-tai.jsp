@@ -130,7 +130,7 @@
 															<c:when test="${deTai.trangThai.id == 3 }">
 																<tr>
 																	<td ><strong>Thời gian nghiệm thu</strong></td>
-																	<td><fmt:formatDate value="${deTai.thoiGianNghiemThu}" pattern="yyyy/MM/dd" /></td>
+																	<td><fmt:formatDate value="${deTai.thoiGianNghiemThu.time}" pattern="yyyy/MM/dd" /></td>
 																	<td></td>
 																</tr>
 																<tr>

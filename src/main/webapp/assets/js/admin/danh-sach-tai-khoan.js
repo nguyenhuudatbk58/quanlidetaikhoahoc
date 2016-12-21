@@ -30,7 +30,7 @@ $(document).ready(function(){
 			 var options = {
 		 			 bootstrapMajorVersion : 3,
 		 			 currentPage : response.page,
-		 			 totalPages :  response.totalPage,
+		 			 totalPages :  response.totalPages,
 		 			 numberOfPages: 4,
 		 			 onPageClicked : function(event, originEvent,type, page) {
 		 				 requestData.page = page;
