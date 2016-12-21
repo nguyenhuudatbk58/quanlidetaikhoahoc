@@ -12,7 +12,7 @@
 			<a href="/trang-chu">Trang chủ </a>
 		</div>
 		<div class="menu-item">
-			<a href="/thong-bao">Thông báo</a>
+			<a href="/danh-sach-thong-bao">Thông báo</a>
 		</div>
 		<div class="menu-item">
 			<a href="/danh-sach-de-tai">Danh sách đề tài</a>

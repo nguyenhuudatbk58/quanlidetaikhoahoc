@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import quanlidetaikhoahoc.Utils;
+import quanlidetaikhoahoc.Views;
 import quanlidetaikhoahoc.dao.NguoiDungDAO;
 import quanlidetaikhoahoc.domain.NguoiDung;
 import quanlidetaikhoahoc.domain.Role;
-import quanlidetaikhoahoc.domain.Views;
 import quanlidetaikhoahoc.responseData.PaginatedResponse;
 
 @Controller
@@ -43,10 +43,6 @@ public class NguoiDungController {
 		return "/users/trang-chu";
 	}
 
-	@GetMapping(value = "/thong-bao")
-	public String xemThongBao() {
-		return "/users/thong-bao";
-	}
 
 	@GetMapping(value = "/thong-tin-ca-nhan")
 	public String xemThongTinCaNhan(UsernamePasswordAuthenticationToken currentUser, Model model) {
@@ -140,6 +136,11 @@ public class NguoiDungController {
 	public String thongTinTaiKhoan(@PathVariable("id") long id,Model model){
 		model.addAttribute("nguoiDung", nguoiDungDAO.getById(id));
 		return "admin/thong-tin-tai-khoan";
+	}
+	
+	@GetMapping(value="/quan-li/quan-li-tai-khoan")
+	public String quanLiTaiKhoan(){
+		return "admin/danh-sach-tai-khoan";
 	}
 
 }

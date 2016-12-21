@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import quanlidetaikhoahoc.Views;
+
 @Entity
 @Table(name = "de_tai")
 public class DeTai {

@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import quanlidetaikhoahoc.Views;
+
 @Entity
 @Table(name="trang_thai_de_tai")
 public class TrangThaiDeTai {

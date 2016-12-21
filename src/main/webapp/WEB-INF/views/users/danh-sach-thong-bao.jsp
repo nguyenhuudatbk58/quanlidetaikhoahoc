@@ -2,7 +2,6 @@
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page isELIgnored="false"%>
 
 <html>
@@ -48,16 +47,15 @@
                          <div class="col-md-10 col-md-offset-1">
                            <h2>Thông báo</h2>
                             <!-- Paragraph Examples -->
-                          <div>
-                              <p class="lead">${thongBao.tieuDe}</p>
-                              <p><em><fmt:formatDate value="${thongBao.thoiGianTao}" pattern="yyyy/MM/dd" /></em></p>
-                              <div class="">
-                                  ${thongBao.noiDung}
-                              </div>
+                          <div id="dsThongBao">
                           </div>
 
                         </div>
 
+                        <div class="text-right">
+                           <ul class="pagination" id="pagination">
+                           </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,5 +70,6 @@
             <script type="text/javascript" src="/assets/js/jquery.sticky.js" charset="utf-8"></script>
             <script type="text/javascript" src="/assets/js/slimbox2.js" charset="utf-8"></script>
             <script src="/assets/js/modernizr.custom.js" type="text/javascript"></script>
+            <script src="/assets/js/user/danh-sach-thong-bao.js" type="text/javascript"></script>
     </body>
 </html>

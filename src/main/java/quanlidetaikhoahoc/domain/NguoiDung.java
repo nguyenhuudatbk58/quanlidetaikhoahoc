@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import quanlidetaikhoahoc.Views;
+
 @Entity
 @Table(name = "nguoi_dung")
 public class NguoiDung {

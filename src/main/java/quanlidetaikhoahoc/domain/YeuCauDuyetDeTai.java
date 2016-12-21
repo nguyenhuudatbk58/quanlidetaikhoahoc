@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import quanlidetaikhoahoc.YeuCauSerializer;
+
 @Entity
 @Table(name = "yeu_cau_duyet_de_tai")
 @JsonSerialize(using=YeuCauSerializer.class)

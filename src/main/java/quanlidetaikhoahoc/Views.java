@@ -1,4 +1,4 @@
-package quanlidetaikhoahoc.domain;
+package quanlidetaikhoahoc;
 
 public class Views {
 

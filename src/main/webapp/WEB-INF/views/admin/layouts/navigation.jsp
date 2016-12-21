@@ -37,7 +37,7 @@
                   <a href="#"><i class="fa fa-fw fa-dashboard"></i> Quản lý tin tức</a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Quản lý thông báo</a>
+                  <a href="/quan-li/quan-li-thong-bao"><i class="fa fa-fw fa-bar-chart-o"></i> Quản lý thông báo</a>
                 </li>
                 <li class="active">
                   <a href="/quan-li/quan-li-tai-khoan"><i class="fa fa-fw fa-table"></i> Quản lý tài khoản</a>

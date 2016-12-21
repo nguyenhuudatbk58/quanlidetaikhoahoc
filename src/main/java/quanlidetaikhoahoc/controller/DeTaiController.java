@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import quanlidetaikhoahoc.Views;
 import quanlidetaikhoahoc.dao.DeTaiDAO;
 import quanlidetaikhoahoc.dao.NguoiDungDAO;
 import quanlidetaikhoahoc.dao.YeuCauDuyetDeTaiDAO;
@@ -29,7 +30,6 @@ import quanlidetaikhoahoc.domain.HuongNghienCuu;
 import quanlidetaikhoahoc.domain.LoaiDeTai;
 import quanlidetaikhoahoc.domain.NguoiDung;
 import quanlidetaikhoahoc.domain.TrangThaiDeTai;
-import quanlidetaikhoahoc.domain.Views;
 import quanlidetaikhoahoc.domain.YeuCauDuyetDeTai;
 import quanlidetaikhoahoc.requestdata.SearchDeTaiRequestData;
 import quanlidetaikhoahoc.requestdata.TypeSearch;
@@ -226,18 +226,6 @@ public class DeTaiController {
 		response.setTotalElement(total);
 		response.setTotalPage(totalPage);
 		return response;
-	}
-	
-	
-
-	@GetMapping(value="/quan-li/tao-thong-bao")
-	public String taoThongBao(){
-		return "admin/quan-li-thong-bao";
-	}
-	
-	@GetMapping(value="/quan-li/quan-li-tai-khoan")
-	public String quanLiTaiKhoan(){
-		return "admin/quan-li-tai-khoan";
 	}
 	
 	@GetMapping(value="/quan-li/duyet-de-tai")

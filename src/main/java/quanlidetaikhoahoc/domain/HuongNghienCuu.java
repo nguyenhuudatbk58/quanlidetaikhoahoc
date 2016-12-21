@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import quanlidetaikhoahoc.Views;
 @Entity
 @Table(name="huong_nghien_cuu")
 public class HuongNghienCuu {
