@@ -18,6 +18,8 @@ $(document).ready(function(){
         });
 	});
 	
+	
+	
 	$.validator.methods.future = function(value,element){
 		if(value.trim() === ""){
 			return false;
@@ -152,11 +154,15 @@ $(document).ready(function(){
 			           'Content-Type': 'application/json' 
 			    },
     			success: function(response){
-    				$("#message").append("Đăng kí đề tài thành công.");
-    				$("#message").removeClass("hidden");
+    				$("#messageDangKiDT").append("Đăng kí đề tài thành công.");
+    				$("#messageDangKiDT").removeClass("hidden");
     				setTimeout(function(){
-    					$("#message").addClass("hidden");
-    				},2000);
+    					$("#messageDangKiDT").addClass("hidden");
+    				},5000);
+    			},
+    			error: function(xhr, status, errorThrown){
+    				console.log(errorThrown);
+    				console.log("errrrrrrror");
     			}
     		});
         }

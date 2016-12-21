@@ -25,6 +25,11 @@
                             <h1 class="page-header">Thêm tài khoản
                                 <button type="submit" class="btn btn-lg btn-primary" >Lưu tài khoản mới</button>
                             </h1>
+                            
+                            <div class="alert alert-success alert-dismissible hidden" id="messageTaoTaiKhoan">
+							    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							    Tạo tài khoản thành công
+						    </div>
 
                         </div>
                         

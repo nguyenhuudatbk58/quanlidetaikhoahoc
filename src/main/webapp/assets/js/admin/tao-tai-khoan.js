@@ -87,7 +87,10 @@ $(document).ready(function(){
 			           'Content-Type': 'application/json' 
 			    },
     			success: function(response){
-//    				$("#message").removeClass("hide");
+    				$("#messageTaoTaiKhoan").removeClass("hidden");
+    				setTimeout(function(){
+    					$("#messageTaoTaiKhoan").addClass("hidden");
+    				},3000);
     			}
     		});
         }

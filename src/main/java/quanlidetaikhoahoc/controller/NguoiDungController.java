@@ -47,7 +47,8 @@ public class NguoiDungController {
 	@GetMapping(value = "/thong-tin-ca-nhan")
 	public String xemThongTinCaNhan(UsernamePasswordAuthenticationToken currentUser, Model model) {
 		NguoiDung nguoiDung = (NguoiDung) currentUser.getPrincipal();
-		model.addAttribute("nguoiDung", nguoiDung);
+		
+		model.addAttribute("nguoiDung", nguoiDungDAO.getByMaTacGia(nguoiDung.getMaTacGia()));
 		return "/users/thong-tin-ca-nhan";
 	}
 
@@ -92,6 +93,7 @@ public class NguoiDungController {
 		nguoiDung.setMatKhau(Utils.encryptMD5(token,matKhau));
 		nguoiDung.setToken(token);
 		nguoiDung.setRole(Role.USER);
+		nguoiDung.setActive(true);
 		nguoiDungDAO.save(nguoiDung);
 	}
 	

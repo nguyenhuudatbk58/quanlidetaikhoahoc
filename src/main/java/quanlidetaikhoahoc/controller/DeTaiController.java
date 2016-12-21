@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,7 @@ public class DeTaiController {
 	public @ResponseBody List<DanhGia> getDanhGia() {
 		return deTaiDAO.getDanhGia();
 	}
-	
+
 	@GetMapping(value = "/danh-sach-de-tai")
 	public String xemDSDeTai(Model model) {
 		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
@@ -72,14 +73,14 @@ public class DeTaiController {
 		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
 		return "/users/danh-sach-de-tai";
 	}
-	
+
 	@GetMapping(value = "/thong-tin-de-tai/{id}")
 	public String thongTinDeTai(@PathVariable("id") long id, Model model) {
 		DeTai deTai = deTaiDAO.get(id);
 		model.addAttribute("deTai", deTai);
 		return "/users/thong-tin-de-tai";
 	}
-	
+
 	@GetMapping(value = "/dang-ki-de-tai")
 	public String dangkiDeTai() {
 		return "/users/dang-ki-de-tai";
@@ -101,12 +102,19 @@ public class DeTaiController {
 	@ResponseStatus(HttpStatus.OK)
 	public void suaDeTai(@PathVariable("id") long id, @RequestBody DeTai deTai) {
 		DeTai dt = deTaiDAO.get(id);
-		deTai.setIdDeTai(id);
-		deTai.setMaDeTai(dt.getMaDeTai());
-		deTai.setTacGia(dt.getTacGia());
-		deTai.setDuyet(dt.isDuyet());
-		deTai.setNam(dt.getNam());
-		deTaiDAO.update(deTai);
+
+		dt.setTen(deTai.getTen());
+		dt.setThoiGianBatDau(deTai.getThoiGianBatDau());
+		dt.setThoiGianKetThuc(deTai.getThoiGianKetThuc());
+		dt.setLoaiDeTai(deTai.getLoaiDeTai());
+		dt.setHuongNghienCuu(deTai.getHuongNghienCuu());
+		dt.setTrangThai(deTai.getTrangThai());
+		dt.setLyDoHuy(deTai.getLyDoHuy());
+		dt.setDanhGia(deTai.getDanhGia());
+		dt.setThoiGianNghiemThu(deTai.getThoiGianNghiemThu());
+		dt.setMoTa(deTai.getMoTa());
+
+		deTaiDAO.update(dt);
 	}
 
 	@PostMapping(value = "/quan-li/xoa-de-tai/{id}")
@@ -128,9 +136,10 @@ public class DeTaiController {
 	}
 
 	@PostMapping("/tao-de-tai")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void taoDeTai(@RequestBody DeTai deTai, UsernamePasswordAuthenticationToken currentUser) {
-		NguoiDung nguoiDung = nguoiDungDAO.getByMaTacGia(((NguoiDung)currentUser.getPrincipal()).getMaTacGia());
+	@JsonView(Views.ReviewDeTai.class)
+	public @ResponseBody ResponseEntity<DeTai> taoDeTai(@RequestBody DeTai deTai,
+			UsernamePasswordAuthenticationToken currentUser) {
+		NguoiDung nguoiDung = nguoiDungDAO.getByMaTacGia(((NguoiDung) currentUser.getPrincipal()).getMaTacGia());
 		deTai.setDuyet(false);
 		deTai.setNguoiDung(nguoiDung);
 		deTai.setNam(Calendar.getInstance().get(Calendar.YEAR));
@@ -142,6 +151,8 @@ public class DeTaiController {
 		deTaiDAO.save(deTai);
 		yeuCauDAO.save(thongBao);
 		messaging.convertAndSend("/post/thong-bao", thongBao);
+		ResponseEntity<DeTai> responseEntity = new ResponseEntity<DeTai>(deTai,HttpStatus.CREATED);
+		return responseEntity;
 	}
 
 	@PostMapping("/search")
@@ -227,27 +238,26 @@ public class DeTaiController {
 		response.setTotalPage(totalPage);
 		return response;
 	}
-	
-	@GetMapping(value="/quan-li/duyet-de-tai")
-	public String duyetDeTai(){
+
+	@GetMapping(value = "/quan-li/duyet-de-tai")
+	public String duyetDeTai() {
 		return "admin/duyet-de-tai";
 	}
-	
-	@GetMapping(value="/quan-li/danh-sach-de-tai")
-	public String dsDeTai(Model model){
+
+	@GetMapping(value = "/quan-li/danh-sach-de-tai")
+	public String dsDeTai(Model model) {
 		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
 		model.addAttribute("dsNam", deTaiDAO.getDanhSachNam());
 		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
 		return "admin/danh-sach-de-tai";
 	}
-	
-	
-	@GetMapping(value="/quan-li/thong-tin-de-tai/{id}")
-	public String deTai(@PathVariable("id") int id,Model model){
+
+	@GetMapping(value = "/quan-li/thong-tin-de-tai/{id}")
+	public String deTai(@PathVariable("id") int id, Model model) {
 		DeTai deTai = deTaiDAO.get(id);
 		List<TrangThaiDeTai> dsTrangThai = deTaiDAO.getTrangThaiDeTai();
-		model.addAttribute("deTai",deTai);
-		model.addAttribute("dsTrangThai",dsTrangThai);
+		model.addAttribute("deTai", deTai);
+		model.addAttribute("dsTrangThai", dsTrangThai);
 		return "admin/thong-tin-de-tai";
 	}
 }

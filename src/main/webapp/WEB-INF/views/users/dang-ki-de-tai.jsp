@@ -59,7 +59,7 @@
 						<div class="headline" ">
 							<h2 align="center">Đăng ký đề tài</h2>
 						</div>
-						<div class="alert alert-success alert-dismissible hidden" id="message">
+						<div class="alert alert-success alert-dismissible hidden" id="messageDangKiDT">
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 						<form id="formTaoDeTai">

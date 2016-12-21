@@ -41,18 +41,18 @@ $(document).ready(function(){
 		var that_month = $that.getMonth();
 		var this_date = $this.getDate();
 		var that_date = $that.getDate();
-		if(this_year < this_month){
-			return false;
+		if(this_year > this_month){
+			return true;
 		}
-		if(this_month < that_month){
-			return false;
+		if(this_month > that_month){
+			return true;
 		}
-		if(this_date <= that_date){
-			return false;
+		if(this_date >= that_date){
+			return true;
 		}
 		
 		
-		return true;
+		return false;
 	};
 	$.validator.methods.before = function(value,element,param){
 		if($(param).val().trim() === ""){
@@ -66,17 +66,17 @@ $(document).ready(function(){
 		var that_month = $that.getMonth();
 		var this_date = $this.getDate();
 		var that_date = $that.getDate();
-		if(this_year > that_year){
-			return false;
+		if(this_year < that_year){
+			return true;
 		}
-		if(this_month > that_month){
-			return false;
+		if(this_month < that_month){
+			return true;
 		}
-		if(this_date >= that_date){
-			return false;
+		if(this_date <= that_date){
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 	var validateThoiGianNghiemThu = function(){
 		var thoiGianNghiemThu = $("#thoiGianNghiemThu").val();
@@ -203,8 +203,8 @@ $(document).ready(function(){
 	        			ten: $("#trangThai option:selected").text()
 	        		},
 	        		lyDoHuy: "",
-	        		thoiGianNghiemThu: "",
-	        		danhGia:{},
+	        		thoiGianNghiemThu: null,
+	        		danhGia:null,
 	        		moTa: $("#moTa").val(),
 	        	};
 	        	if(trangThai == 3){
