@@ -2,6 +2,8 @@
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page isELIgnored="false"%>
 
 <html>
@@ -108,10 +110,6 @@
 												Cập nhật thông tin thành công.
 											</div>
 											<div class="form-group">
-												<label>Tên tác giả</label> <input type="text" value="${nguoiDung.tenTacGia}"
-													name="tenTacGia" class="form-control">
-											</div>
-											<div class="form-group">
 												<label>Nghề nghiệp</label> <input type="text" value="${nguoiDung.ngheNghiep}"
 													name="ngheNghiep" class="form-control">
 											</div>
@@ -142,9 +140,8 @@
 							<table class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th><p >Mã đề tài</p></th>
-										<th style="width:40%;"><p >Tên đề tài</p></th>
-										<th><p >Tên tác giả</p></th>
+										<th style="width:35%;"><p >Tên đề tài</p></th>
+										<th style="width:150px;"><p >Tên tác giả</p></th>
 										<th><p >Loại đề tài</p></th>
 										<th><p >Hướng nghiên cứu</p></th>
 										<th><p >Thời gian</p></th>
@@ -157,14 +154,22 @@
 
 									<c:forEach items="${nguoiDung.dsDeTai}" var="deTai">
 										<tr>
-											<td>${deTai.maDeTai}</td>
 											<td>${deTai.ten}</td>
 											<td>${nguoiDung.tenTacGia}</td>
 											<td>${deTai.loaiDeTai.ten}</td>
 											<td>${deTai.huongNghienCuu.ten}</td>
-											<%--                            <td>${deTai.thoiGianBatDau} - ${deTai.thoiGianKetThuc}</td> --%>
-											<td>2/12/2013-12/5/2013</td>
-											<td>${deTai.trangThai.ten}</td>
+											<td>
+											      <fmt:formatDate value="${deTai.thoiGianBatDau.time}" pattern="yyyy/MM/dd" />
+												- <fmt:formatDate value="${deTai.thoiGianKetThuc.time}" pattern="yyyy/MM/dd" />
+											</td>
+											<c:choose>
+											     <c:when test="${deTai.duyet}">
+											        <td>${deTai.trangThai.ten}</td>
+											     </c:when>
+											     <c:otherwise>
+											        <td>Chưa duyệt</td>
+											     </c:otherwise>
+											</c:choose>
 											<td><a href="/thong-tin-de-tai/${deTai.idDeTai}"
 												class="btn btn-sm btn-info">Xem</a></td>
 
@@ -196,5 +201,6 @@
 		<script type="text/javascript" src="/assets/js/slimbox2.js"
 			charset="utf-8"></script>
 		<script src="/assets/js/modernizr.custom.js" type="text/javascript"></script>
+		<script src="/assets/js/user/chinh-sua-thong-tin-ca-nhan.js" type="text/javascript"></script>
 </body>
 </html>

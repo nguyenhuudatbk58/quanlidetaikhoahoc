@@ -12,10 +12,10 @@
 			<a href="/trang-chu">Trang chủ </a>
 		</div>
 		<div class="menu-item">
-			<a href="/danh-sach-de-tai">Danh sách đề tài</a>
+			<a href="/thong-bao">Thông báo</a>
 		</div>
 		<div class="menu-item">
-			<a href="/thong-bao">Thông báo</a>
+			<a href="/danh-sach-de-tai">Danh sách đề tài</a>
 		</div>
 		<sec:authorize access="hasRole('USER')">
 			<div class="menu-item">
@@ -37,7 +37,7 @@
 						<sec:authentication property="principal.tenTacGia" /> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="" data-toggle="modal" data-target="#myModal">Đổi mật khẩu</a></li>
+						<li><a href="" data-toggle="modal" data-target="#changePasswordModal">Đổi mật khẩu</a></li>
 						<li><a href="/dang-xuat">Đăng xuất</a></li>
 					</ul>
 				</div>
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="changePasswordModal" role="dialog">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">

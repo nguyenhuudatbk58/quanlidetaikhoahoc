@@ -66,7 +66,7 @@ $(document).ready(function(){
     			data: data,
     			success: function(response){
     				console.log("sucess");
-    				val message = $("<p>Thay đổi mật khẩu thành công</p>");
+    				var message = $("<p>Thay đổi mật khẩu thành công</p>");
     				$("#message").append(message);
     				$("#message").addClass("alert-success");
     				$("#message").removeClass("hidden");
@@ -77,7 +77,7 @@ $(document).ready(function(){
     			},
     			error: function(xhr, status, errorThrown){
     				console.log("error");
-    				val message = $("<p> Mật khẩu hiện tại không chính xác.</p>");
+    				var message = $("<p> Mật khẩu hiện tại không chính xác.</p>");
     				$("#message").append(message);
     				$("#message").addClass("alert-warning");
     				$("#message").removeClass("hidden");

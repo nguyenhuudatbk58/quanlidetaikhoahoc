@@ -54,7 +54,6 @@ $(document).ready(function(){
         	e.preventDefault();
         	
         	var data = {
-    				tenTacGia: $("#tenTacGia").val(),
     				ngheNghiep: $("#ngheNghiep").val(),
     				sdt: $("#soDT").val(),
     				email: $("#email").val(),
@@ -63,11 +62,7 @@ $(document).ready(function(){
     			
     			method: "POST",
     			url: "/chinh-sua-thong-tin",
-    			data: JSON.stringify(data),
-    			headers: { 
-			           'Accept': 'application/json',
-			           'Content-Type': 'application/json' 
-			    },
+    			data: data,
     			success: function(response){
     				$("#message").removeClass("hide");
     				setTimeout(function(){

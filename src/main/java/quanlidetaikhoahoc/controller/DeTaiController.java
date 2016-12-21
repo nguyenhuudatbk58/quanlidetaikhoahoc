@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import quanlidetaikhoahoc.Utils;
 import quanlidetaikhoahoc.dao.DeTaiDAO;
 import quanlidetaikhoahoc.dao.NguoiDungDAO;
 import quanlidetaikhoahoc.dao.YeuCauDuyetDeTaiDAO;
@@ -28,6 +29,7 @@ import quanlidetaikhoahoc.domain.DeTai;
 import quanlidetaikhoahoc.domain.HuongNghienCuu;
 import quanlidetaikhoahoc.domain.LoaiDeTai;
 import quanlidetaikhoahoc.domain.NguoiDung;
+import quanlidetaikhoahoc.domain.Role;
 import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 import quanlidetaikhoahoc.domain.Views;
 import quanlidetaikhoahoc.domain.YeuCauDuyetDeTai;
@@ -63,6 +65,26 @@ public class DeTaiController {
 	@GetMapping(value = "/danh-gia")
 	public @ResponseBody List<DanhGia> getDanhGia() {
 		return deTaiDAO.getDanhGia();
+	}
+	
+	@GetMapping(value = "/danh-sach-de-tai")
+	public String xemDSDeTai(Model model) {
+		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
+		model.addAttribute("dsNam", deTaiDAO.getDanhSachNam());
+		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
+		return "/users/danh-sach-de-tai";
+	}
+	
+	@GetMapping(value = "/thong-tin-de-tai/{id}")
+	public String thongTinDeTai(@PathVariable("id") long id, Model model) {
+		DeTai deTai = deTaiDAO.get(id);
+		model.addAttribute("deTai", deTai);
+		return "/users/thong-tin-de-tai";
+	}
+	
+	@GetMapping(value = "/dang-ki-de-tai")
+	public String dangkiDeTai() {
+		return "/users/dang-ki-de-tai";
 	}
 
 	@PostMapping(value = "/quan-li/duyet-de-tai/{id}")
@@ -206,5 +228,99 @@ public class DeTaiController {
 		response.setTotalElement(total);
 		response.setTotalPage(totalPage);
 		return response;
+	}
+	
+	
+
+	@GetMapping(value="/quan-li/tao-thong-bao")
+	public String taoThongBao(){
+		return "admin/quan-li-thong-bao";
+	}
+	
+	@GetMapping(value="/quan-li/quan-li-tai-khoan")
+	public String quanLiTaiKhoan(){
+		return "admin/quan-li-tai-khoan";
+	}
+	
+	@GetMapping(value="/quan-li/duyet-de-tai")
+	public String duyetDeTai(){
+		return "admin/duyet-de-tai";
+	}
+	
+	@GetMapping(value="/quan-li/danh-sach-de-tai")
+	public String dsDeTai(Model model){
+		model.addAttribute("dsNguoiDung", nguoiDungDAO.getAll());
+		model.addAttribute("dsNam", deTaiDAO.getDanhSachNam());
+		model.addAttribute("dsTrangThai", deTaiDAO.getTrangThaiDeTai());
+		return "admin/danh-sach-de-tai";
+	}
+	
+	@GetMapping(value="/quan-li/tao-tai-khoan")
+	public String taoTaiKhoan(Model model){
+		String maTacGia = nguoiDungDAO.getMaTacGia();
+		model.addAttribute("maTacGia", maTacGia);
+		return "admin/tao-tai-khoan";
+	}
+	
+	@GetMapping(value="/quan-li/thong-tin-de-tai/{id}")
+	public String deTai(@PathVariable("id") int id,Model model){
+		DeTai deTai = deTaiDAO.get(id);
+		List<TrangThaiDeTai> dsTrangThai = deTaiDAO.getTrangThaiDeTai();
+		model.addAttribute("deTai",deTai);
+		model.addAttribute("dsTrangThai",dsTrangThai);
+		return "admin/thong-tin-de-tai";
+	}
+	@PostMapping(value="/quan-li/tao-tai-khoan")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void taoTaiKhoan(@RequestBody NguoiDung nguoiDung){
+		String token = Utils.generateToken();
+		String matKhau = nguoiDung.getMaTacGia();
+		nguoiDung.setMatKhau(Utils.encryptMD5(token,matKhau));
+		nguoiDung.setToken(token);
+		nguoiDung.setRole(Role.USER);
+		nguoiDungDAO.save(nguoiDung);
+	}
+	
+	@PostMapping(value="/quan-li/reset-mat-khau/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void resetMK(@PathVariable("id") int id){
+		NguoiDung nguoiDung = nguoiDungDAO.getById(id);
+		String token = nguoiDung.getToken();
+		nguoiDung.setMatKhau(Utils.encryptMD5(token, nguoiDung.getMaTacGia()));
+		nguoiDungDAO.update(nguoiDung);
+	}
+	
+	@PostMapping(value="/quan-li/xoa-tai-khoan/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void xoaTaiKhoan(@PathVariable("id") int id){
+		NguoiDung nguoiDung = nguoiDungDAO.getById(id);
+		nguoiDung.setActive(false);
+		nguoiDungDAO.update(nguoiDung);
+	}
+	
+	@PostMapping(value="/quan-li/tim-kiem-nguoi-dung")
+	@JsonView(Views.ReviewUser.class)
+	public @ResponseBody PaginatedResponse<NguoiDung> timKiemTaiKhoan(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize,@RequestParam("dieuKienTimKiem") String dieuKienTimKiem){
+		PaginatedResponse<NguoiDung> response = new PaginatedResponse<NguoiDung>();
+		response.setPage(page);
+		response.setPageSize(pageSize);
+		int total = nguoiDungDAO.count(dieuKienTimKiem);
+		response.setTotalElement(total);
+		int totalPage = 0;
+		if(total % pageSize == 0){
+			totalPage = total / pageSize;
+		}else{
+			totalPage = total / pageSize + 1;
+		}
+		response.setTotalPage(totalPage);
+		int offset = (page - 1)*pageSize;
+		response.setDatas(nguoiDungDAO.search(pageSize, offset, dieuKienTimKiem));
+		return response;
+	}
+	
+	@GetMapping(value="/quan-li/thong-tin-tai-khoan/{id}")
+	public String thongTinTaiKhoan(@PathVariable("id") long id,Model model){
+		model.addAttribute("nguoiDung", nguoiDungDAO.getById(id));
+		return "admin/thong-tin-tai-khoan";
 	}
 }
