@@ -25,6 +25,7 @@ $(document).ready(function(){
 	 
 	 
 	 var  searchResponseHandler  = function(response){
+		 $("#pagination").empty();
 		 if(response.totalPages > 1){
 			 var options = {
 		 			 bootstrapMajorVersion : 3,
@@ -63,9 +64,18 @@ $(document).ready(function(){
 	 searchNguoiDung(requestData,searchResponseHandler);
 	 
 	 $("#searchBtn").click(function(e){
+		requestData.page  = 1;
 		requestData.dieuKienTimKiem = $("#dieuKienTimKiem").val().trim();
 		searchNguoiDung(requestData,searchResponseHandler); 
 	 });
+	 
+	 $("#dieuKienTimKiem").keypress(function(e){
+		 if(e.which === 13){
+			 requestData.page  = 1;
+		     requestData.dieuKienTimKiem = $("#dieuKienTimKiem").val().trim();
+		     searchNguoiDung(requestData,searchResponseHandler); 
+		 }
+	 })
 	 
 	 $(document).click(function(e){
 		 var $target = $(e.target);

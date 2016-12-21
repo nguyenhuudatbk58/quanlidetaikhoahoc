@@ -110,11 +110,22 @@
 															 - <fmt:formatDate value="${deTai.thoiGianKetThuc.time}" pattern="yyyy/MM/dd" /></td>
 															<td></td>
 														</tr>
-														<tr>
-															<td ><strong>Trạng thái</strong></td>
-															<td>${deTai.trangThai.ten}</td>
-															<td></td>
-														</tr>
+														<c:choose>
+															<c:when test="${deTai.duyet}">
+																<tr>
+																	<td><strong>Trạng thái</strong></td>
+																	<td>${deTai.trangThai.ten}</td>
+																	<td></td>
+																</tr>
+															</c:when>
+															<c:otherwise>
+															    <tr>
+																	<td><strong>Trạng thái</strong></td>
+																	<td>Chưa duyệt</td>
+																	<td></td>
+																</tr>
+															</c:otherwise>
+														</c:choose>
 														<c:choose>
 															<c:when test="${deTai.trangThai.id == 3 }">
 																<tr>

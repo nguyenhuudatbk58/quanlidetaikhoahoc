@@ -140,7 +140,10 @@ $(document).ready(function(){
 				error.remove();
 			}
 		}
-	})
+	});
+	$("#backBtn").click(function(){
+		window.history.back();
+	});
 	$("#formSuaDeTai").validate({
 		    errorElement: "span",
 		    errorClass: "error-message",
@@ -235,8 +238,8 @@ $(document).ready(function(){
 				    },
 	    			success: function(response){
 	    				$("#message").removeClass("hidden");
-	    				setTimoute(function(){
-	    					window.location = "/quan-li/sua-de-tai/"+id;
+	    				setTimeout(function(){
+	    					window.location = "/quan-li/thong-tin-de-tai/"+id;
 	    				},2000)
 	    			}
 	    		});

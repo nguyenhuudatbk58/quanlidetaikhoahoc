@@ -63,7 +63,7 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 		Predicate predicate = null;
 		criteriaQuery.select(criteriaBuilder.count(nd));
 		if (!dieuKienTimKiem.equals("")) {
-			Predicate maTacGiaPredicate = criteriaBuilder.equal(nd.get("maTacGia"), dieuKienTimKiem);
+			Predicate maTacGiaPredicate = criteriaBuilder.like(nd.<String>get("maTacGia"), dieuKienTimKiem+"%");
 			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String> get("tenTacGia"), dieuKienTimKiem + "%");
 			predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
 
@@ -89,8 +89,8 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 		criteriaQuery.select(nd);
 		Predicate predicate = null;
 		if (!dieuKienTimKiem.equals("")) {
-			Predicate maTacGiaPredicate = criteriaBuilder.equal(nd.get("maTacGia"), dieuKienTimKiem);
-			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String> get("tenTacGia"), dieuKienTimKiem);
+			Predicate maTacGiaPredicate = criteriaBuilder.like(nd.<String>get("maTacGia"), dieuKienTimKiem+"%");
+			Predicate tenTacGiaPredicate = criteriaBuilder.like(nd.<String> get("tenTacGia"), dieuKienTimKiem+"%");
 			predicate = criteriaBuilder.or(maTacGiaPredicate, tenTacGiaPredicate);
 
 			Predicate activePredicate = criteriaBuilder.equal(nd.get("active"), true);

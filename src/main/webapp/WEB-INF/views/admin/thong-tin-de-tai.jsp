@@ -104,7 +104,31 @@
                                  </c:otherwise>
                             </c:choose>
                           </tr>
-                        </tbody>
+						 <c:choose>
+						      <c:when test="${deTai.trangThai.id == 3 }">
+								 <tr>
+								    <td><strong>Thời gian nghiệm thu</strong></td>
+									<td><fmt:formatDate value="${deTai.thoiGianNghiemThu.time}"
+													pattern="yyyy/MM/dd" /></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><strong>Đánh giá</strong></td>
+									<td>${deTai.danhGia.ten}</td>
+									<td></td>
+								</tr>
+							  </c:when>
+						 </c:choose>
+					     <c:choose>
+						      <c:when test="${deTai.trangThai.id == 5 }">
+								<tr>
+								 	<td><strong>Lý do hủy</strong></td>
+									<td>${deTai.lyDoHuy}</td>
+									<td></td>
+							    </tr>
+							 </c:when>
+						 </c:choose>
+					  	</tbody>
                       </table>
                       <div class="col-md-offset-5">
                           <c:choose>
@@ -142,9 +166,9 @@
             			  $.post("/quan-li/duyet-de-tai/"+id,{},function(){
             				  $("#message").append("Duyệt đề tài thành công!")
             				  $("#message").removeClass("hide");
-            				  $target.removeClass("btn-success");
-            				  $target.addClass("btn-warning");
-            				  $target.html("Sửa");
+            				  setTimeout(function(){
+            					  window.location.reload();
+            				  },2000);
             			  });
             		  }
             		  

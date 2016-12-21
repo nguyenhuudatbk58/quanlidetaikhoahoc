@@ -24,18 +24,20 @@ $(document).ready(function(){
 	 
 	 
 	 var  searchResponseHandler  = function(response){
-		 var options = {
-	 			 bootstrapMajorVersion : 3,
-	 			 currentPage : response.page,
-	 			 totalPages :  response.totalPages,
-	 			 numberOfPages: 4,
-	 			 onPageClicked : function(event, originEvent,type, page) {
-	 				 requestData.page = page;
-	 				 searchDeTai(requestData,insertDeTai);
-	 			 }
-	 	 };
-	    	 
-	    $('#pagination').bootstrapPaginator(options);
+		$("#pagination").empty();
+		if(response.totalPages > 1){
+			 var options = {
+		 			 bootstrapMajorVersion : 3,
+		 			 currentPage : response.page,
+		 			 totalPages :  response.totalPages,
+		 			 numberOfPages: 4,
+		 			 onPageClicked : function(event, originEvent,type, page) {
+		 				 requestData.page = page;
+		 				 searchDeTai(requestData,insertDeTai);
+		 			 }
+		 	 };
+		    $('#pagination').bootstrapPaginator(options);
+		}
 	    insertDeTai(response);
 	 };
 	 
@@ -60,10 +62,17 @@ $(document).ready(function(){
 	 searchDeTai(requestData,searchResponseHandler);
 	 
 	 $("#searchBtn").click(function(e){
+		requestData.page = 1;
 		requestData.tenDeTai = $("#tenDeTai").val().trim();
 		searchDeTai(requestData,searchResponseHandler); 
 	 });
-	 
+	 $("#tenDeTai").keypress(function(e) {
+		    if(e.which == 13) {
+		    	requestData.page = 1;
+		    	requestData.tenDeTai = $("#tenDeTai").val().trim();
+				searchDeTai(requestData,searchResponseHandler); 
+		    }
+    });
 	 
 	 $(document).click(function(e){
 		 var $target = $(e.target);

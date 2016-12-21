@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import quanlidetaikhoahoc.Utils;
 import quanlidetaikhoahoc.dao.DeTaiDAO;
 import quanlidetaikhoahoc.dao.NguoiDungDAO;
 import quanlidetaikhoahoc.dao.YeuCauDuyetDeTaiDAO;
@@ -29,7 +28,6 @@ import quanlidetaikhoahoc.domain.DeTai;
 import quanlidetaikhoahoc.domain.HuongNghienCuu;
 import quanlidetaikhoahoc.domain.LoaiDeTai;
 import quanlidetaikhoahoc.domain.NguoiDung;
-import quanlidetaikhoahoc.domain.Role;
 import quanlidetaikhoahoc.domain.TrangThaiDeTai;
 import quanlidetaikhoahoc.domain.Views;
 import quanlidetaikhoahoc.domain.YeuCauDuyetDeTai;
@@ -255,12 +253,6 @@ public class DeTaiController {
 		return "admin/danh-sach-de-tai";
 	}
 	
-	@GetMapping(value="/quan-li/tao-tai-khoan")
-	public String taoTaiKhoan(Model model){
-		String maTacGia = nguoiDungDAO.getMaTacGia();
-		model.addAttribute("maTacGia", maTacGia);
-		return "admin/tao-tai-khoan";
-	}
 	
 	@GetMapping(value="/quan-li/thong-tin-de-tai/{id}")
 	public String deTai(@PathVariable("id") int id,Model model){
@@ -269,58 +261,5 @@ public class DeTaiController {
 		model.addAttribute("deTai",deTai);
 		model.addAttribute("dsTrangThai",dsTrangThai);
 		return "admin/thong-tin-de-tai";
-	}
-	@PostMapping(value="/quan-li/tao-tai-khoan")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void taoTaiKhoan(@RequestBody NguoiDung nguoiDung){
-		String token = Utils.generateToken();
-		String matKhau = nguoiDung.getMaTacGia();
-		nguoiDung.setMatKhau(Utils.encryptMD5(token,matKhau));
-		nguoiDung.setToken(token);
-		nguoiDung.setRole(Role.USER);
-		nguoiDungDAO.save(nguoiDung);
-	}
-	
-	@PostMapping(value="/quan-li/reset-mat-khau/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public void resetMK(@PathVariable("id") int id){
-		NguoiDung nguoiDung = nguoiDungDAO.getById(id);
-		String token = nguoiDung.getToken();
-		nguoiDung.setMatKhau(Utils.encryptMD5(token, nguoiDung.getMaTacGia()));
-		nguoiDungDAO.update(nguoiDung);
-	}
-	
-	@PostMapping(value="/quan-li/xoa-tai-khoan/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public void xoaTaiKhoan(@PathVariable("id") int id){
-		NguoiDung nguoiDung = nguoiDungDAO.getById(id);
-		nguoiDung.setActive(false);
-		nguoiDungDAO.update(nguoiDung);
-	}
-	
-	@PostMapping(value="/quan-li/tim-kiem-nguoi-dung")
-	@JsonView(Views.ReviewUser.class)
-	public @ResponseBody PaginatedResponse<NguoiDung> timKiemTaiKhoan(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize,@RequestParam("dieuKienTimKiem") String dieuKienTimKiem){
-		PaginatedResponse<NguoiDung> response = new PaginatedResponse<NguoiDung>();
-		response.setPage(page);
-		response.setPageSize(pageSize);
-		int total = nguoiDungDAO.count(dieuKienTimKiem);
-		response.setTotalElement(total);
-		int totalPage = 0;
-		if(total % pageSize == 0){
-			totalPage = total / pageSize;
-		}else{
-			totalPage = total / pageSize + 1;
-		}
-		response.setTotalPage(totalPage);
-		int offset = (page - 1)*pageSize;
-		response.setDatas(nguoiDungDAO.search(pageSize, offset, dieuKienTimKiem));
-		return response;
-	}
-	
-	@GetMapping(value="/quan-li/thong-tin-tai-khoan/{id}")
-	public String thongTinTaiKhoan(@PathVariable("id") long id,Model model){
-		model.addAttribute("nguoiDung", nguoiDungDAO.getById(id));
-		return "admin/thong-tin-tai-khoan";
 	}
 }

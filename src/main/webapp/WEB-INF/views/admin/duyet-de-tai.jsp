@@ -29,12 +29,13 @@
 					</div>
 				</div>
 
-				<div class="col-lg-4">
+				<div class="col-lg-6 col-md-6">
 					<div class="form-group input-group">
-						<input type="text" class="form-control"> <span
+						<input type="text" class="form-control" id="tenDeTai"> <span
 							class="input-group-btn"><button
-								class="btn btn-default form-control" type="button">
+								class="btn btn-default form-control"  id="searchBtn" type="button">
 								<i class="fa fa-search"></i>
+								Tìm kiếm
 							</button></span>
 
 					</div>

@@ -139,7 +139,7 @@
                            </div>
                            <div class="col-md-offset-4 " >
                                  <button type="submit" class="btn btn-success" data-id="${deTai.idDeTai}">Chỉnh sửa</button>
-                                 <button type="button" class="btn btn-default ">Quay lại</button>
+                                 <button type="button" class="btn btn-default  " id="backBtn">Quay lại</button>
                            </div>
                            
                         </form>

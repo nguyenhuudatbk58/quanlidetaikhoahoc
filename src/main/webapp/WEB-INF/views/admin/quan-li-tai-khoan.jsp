@@ -34,10 +34,10 @@
     					</div>
     				</div>
 
-    				<div class="col-lg-4">
+    				<div class="col-lg-5 col-md-5">
     					<div class="form-group input-group">
     						<input type="text" class="form-control" id="dieuKienTimKiem">
-    						<span class="input-group-btn"><button class="btn btn-default form-control" type="button" id="searchBtn"><i class="fa fa-search"></i></button></span>
+    						<span class="input-group-btn"><button class="btn btn-default form-control" type="button" id="searchBtn"><i class="fa fa-search"></i>Tìm kiếm</button></span>
 
     					</div>
     				</div>
