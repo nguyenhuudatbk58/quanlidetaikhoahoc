@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import quanlidetaikhoahoc.Utils;
 import quanlidetaikhoahoc.Views;
 import quanlidetaikhoahoc.dao.NguoiDungDAO;
+import quanlidetaikhoahoc.domain.Admin;
 import quanlidetaikhoahoc.domain.NguoiDung;
 import quanlidetaikhoahoc.domain.Role;
 import quanlidetaikhoahoc.responseData.PaginatedResponse;
@@ -39,7 +40,13 @@ public class NguoiDungController {
 	}
 
 	@GetMapping(value = "/trang-chu")
-	public String hienthiTrangChu() {
+	public String hienthiTrangChu(UsernamePasswordAuthenticationToken currentUser) {
+		if(currentUser != null){
+			Object u = currentUser.getPrincipal();
+			if(u instanceof Admin){
+				return "redirect:/quan-li/quan-li-tai-khoan";
+			}
+		}
 		return "/users/trang-chu";
 	}
 
