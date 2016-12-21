@@ -25,7 +25,7 @@ $(document).ready(function(){
  				email: true
  			}
 		},
-		message:{
+		messages:{
 			tenTacGia:{
 				required: "Nhập tên tác giả."
 			},
@@ -55,20 +55,14 @@ $(document).ready(function(){
         	
         	var data = {
     				ngheNghiep: $("#ngheNghiep").val(),
-    				sdt: $("#soDT").val(),
+    				sdt: $("#sdt").val(),
     				email: $("#email").val(),
     		};
-    		$.ajax({
-    			
-    			method: "POST",
-    			url: "/chinh-sua-thong-tin",
-    			data: data,
-    			success: function(response){
-    				$("#message").removeClass("hide");
-    				setTimeout(function(){
-    					location.reload();
-    				},1000);
-    			}
+    		$.post("/chinh-sua-thong-tin-ca-nhan",data,function(response){
+    			$("#messageChinhSuaThongTin").removeClass("hidden");
+				setTimeout(function(){
+					location.reload();
+				},2000);
     		});
         }
 		

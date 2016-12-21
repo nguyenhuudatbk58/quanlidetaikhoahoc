@@ -105,26 +105,26 @@
 									</div>
 									<form id="formEditUser">
 										<div class="modal-body">
-											<div class="alert alert-success alert-dismissible hide" id="message">
+											<div class="alert alert-success alert-dismissible hidden" id="messageChinhSuaThongTin">
 												<a href="#" class="close" data-dismiss="alert"	aria-label="close">&times;</a> 
 												Cập nhật thông tin thành công.
 											</div>
 											<div class="form-group">
 												<label>Nghề nghiệp</label> <input type="text" value="${nguoiDung.ngheNghiep}"
-													name="ngheNghiep" class="form-control">
+													name="ngheNghiep"  id="ngheNghiep" class="form-control">
 											</div>
 											<div class="form-group">
-												<label>Số điện thoại</label> <input type="text" name="soDT" value="${nguoiDung.sdt}" 
+												<label>Số điện thoại</label> <input type="text" name="soDT" id="sdt" value="${nguoiDung.sdt}" 
 													class="form-control">
 											</div>
 											<div>
-												<label>Email</label> <input type="text" name="email" value="${nguoiDung.email}"
+												<label>Email</label> <input type="text" name="email" id= "email"value="${nguoiDung.email}"
 													class="form-control">
 											</div>
 
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-primary">Cập
+											<button type="submit" class="btn btn-primary">Cập
 												nhật</button>
 											<button type="button" class="btn btn-default"
 												data-dismiss="modal">Hủy</button>

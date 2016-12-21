@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	    .antMatchers("/dang-ki-de-tai").hasRole("USER")
 	    .antMatchers("/cap-nhat-thong-tin").hasRole("USER")
 	    .antMatchers("/thong-tin-ca-nhan").hasRole("USER")
-	    .antMatchers("/chinh-sua-thong-tin").hasRole("USER")
+	    .antMatchers("/chinh-sua-thong-tin-ca-nhan").hasRole("USER")
 	    .antMatchers("/thay-doi-mat-khau").hasRole("USER")
 	    .antMatchers("/quan-li/*").hasRole("ADMIN")
 		.and().formLogin().loginPage("/dang-nhap").permitAll().defaultSuccessUrl("/trang-chu").failureUrl("/dang-nhap?error=true")

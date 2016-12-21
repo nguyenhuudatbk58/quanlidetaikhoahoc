@@ -59,10 +59,10 @@ public class NguoiDungController {
 		return "/users/thong-tin-ca-nhan";
 	}
 
-	@PostMapping(value = "/chinh-sua-thong-tin")
+	@PostMapping(value = "/chinh-sua-thong-tin-ca-nhan")
 	@ResponseStatus(HttpStatus.OK)
-	public void chinhSuaThongTin(@RequestParam("email") String email, @RequestParam("ngheNghiep") String ngheNghiep,
-			@RequestParam("soDT") String sdt, UsernamePasswordAuthenticationToken currentUser) {
+	public void chinhSuaThongTin( UsernamePasswordAuthenticationToken currentUser,@RequestParam("email") String email, @RequestParam("ngheNghiep") String ngheNghiep,
+			@RequestParam("sdt") String sdt) {
 		NguoiDung nguoiDung = nguoiDungDAO.getByMaTacGia(((NguoiDung) currentUser.getPrincipal()).getMaTacGia());
 		nguoiDung.setEmail(email);
 		nguoiDung.setNgheNghiep(ngheNghiep);

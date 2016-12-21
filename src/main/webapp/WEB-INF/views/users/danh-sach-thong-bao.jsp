@@ -70,6 +70,7 @@
             <script type="text/javascript" src="/assets/js/jquery.sticky.js" charset="utf-8"></script>
             <script type="text/javascript" src="/assets/js/slimbox2.js" charset="utf-8"></script>
             <script src="/assets/js/modernizr.custom.js" type="text/javascript"></script>
+            <script type="text/javascript" src="/assets/js/bootstrap-paginator.js" charset="utf-8"></script>
             <script src="/assets/js/user/danh-sach-thong-bao.js" type="text/javascript"></script>
     </body>
 </html>

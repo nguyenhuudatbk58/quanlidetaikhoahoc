@@ -120,7 +120,7 @@
 							  </c:when>
 						 </c:choose>
 					     <c:choose>
-						      <c:when test="${deTai.trangThai.id == 5 }">
+						      <c:when test="${deTai.trangThai.id == 4 }">
 								<tr>
 								 	<td><strong>Lý do hủy</strong></td>
 									<td>${deTai.lyDoHuy}</td>
