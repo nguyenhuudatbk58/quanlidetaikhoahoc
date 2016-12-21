@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	    .antMatchers("/thong-tin-ca-nhan").hasRole("USER")
 	    .antMatchers("/chinh-sua-thong-tin").hasRole("USER")
 	    .antMatchers("/thay-doi-mat-khau").hasRole("USER")
-		.and().formLogin().loginPage("/dang-nhap").permitAll().defaultSuccessUrl("/trang-chu")
+		.and().formLogin().loginPage("/dang-nhap").permitAll().defaultSuccessUrl("/trang-chu").failureUrl("/dang-nhap?error=true")
 		.loginProcessingUrl("/dang-nhap").passwordParameter("password").usernameParameter("username")
 		.and().logout().logoutUrl("/dang-xuat").logoutSuccessUrl("/trang-chu")
 		.and().csrf().disable();

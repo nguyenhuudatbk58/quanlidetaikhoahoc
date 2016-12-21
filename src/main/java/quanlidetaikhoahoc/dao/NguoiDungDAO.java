@@ -43,8 +43,11 @@ public class NguoiDungDAO extends BaseHibernateDAO {
 	public NguoiDung getByMaTacGia(String maTacGia) {
 		Query<NguoiDung> query = getCurrentSession().createQuery("from NguoiDung where maTacGia= :maTacGia");
 		query.setParameter("maTacGia", maTacGia);
-		NguoiDung nguoiDung = query.getSingleResult();
-		return nguoiDung;
+        List<NguoiDung> dsNguoiDung = query.getResultList();
+        if(dsNguoiDung.isEmpty()){
+        	return null;
+        }
+		return dsNguoiDung.get(0);
 	}
 
 	public NguoiDung getById(long id) {

@@ -22,7 +22,11 @@ public class NguoiDungController {
 	private NguoiDungDAO nguoiDungDAO;
 
 	@GetMapping(value = "/dang-nhap")
-	public String dangNhap() {
+	public String dangNhap(@RequestParam(value = "error", defaultValue = "", required = false) String error,
+			Model model) {
+		if (!error.equals("")) {
+			model.addAttribute("error", true);
+		}
 		return "/users/login";
 	}
 
@@ -31,12 +35,10 @@ public class NguoiDungController {
 		return "/users/trang-chu";
 	}
 
-
 	@GetMapping(value = "/thong-bao")
 	public String xemThongBao() {
 		return "/users/thong-bao";
 	}
-
 
 	@GetMapping(value = "/thong-tin-ca-nhan")
 	public String xemThongTinCaNhan(UsernamePasswordAuthenticationToken currentUser, Model model) {
@@ -45,11 +47,10 @@ public class NguoiDungController {
 		return "/users/thong-tin-ca-nhan";
 	}
 
-
-
 	@PostMapping(value = "/chinh-sua-thong-tin")
 	@ResponseStatus(HttpStatus.OK)
-	public void chinhSuaThongTin(@RequestParam("email") String email,@RequestParam("ngheNghiep") String ngheNghiep,@RequestParam("soDT") String sdt, UsernamePasswordAuthenticationToken currentUser) {
+	public void chinhSuaThongTin(@RequestParam("email") String email, @RequestParam("ngheNghiep") String ngheNghiep,
+			@RequestParam("soDT") String sdt, UsernamePasswordAuthenticationToken currentUser) {
 		NguoiDung nguoiDung = nguoiDungDAO.getByMaTacGia(((NguoiDung) currentUser.getPrincipal()).getMaTacGia());
 		nguoiDung.setEmail(email);
 		nguoiDung.setNgheNghiep(ngheNghiep);

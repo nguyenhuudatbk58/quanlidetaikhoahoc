@@ -32,6 +32,15 @@
 					<div class="login-header margin-bottom-30">
 						<h2>Đăng nhập vào hệ thống</h2>
 					</div>
+					<c:choose>
+					     <c:when test="${error}">
+							<div class="alert alert-warning alert-dismissible " id="message">
+								<a href="#" class="close" data-dismiss="alert"
+									aria-label="close">&times;</a> Tên tài khoản hoặc mật khẩu
+								không chính xác.
+							</div>
+						</c:when>
+					</c:choose>
 					<div class="input-group margin-bottom-20">
 						<span class="input-group-addon"> <i class="fa fa-user"></i>
 						</span> <input placeholder="Tài khoản" class="form-control" type="text"
